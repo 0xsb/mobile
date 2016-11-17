@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.UserApprovalTypeMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.UserApprovalType" >
+    <result column="approval_type_id" property="approvalTypeId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.UserApprovalType" >
+    insert into user_approval_type (approval_type_id, user_id)
+    values (#{approvalTypeId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.UserApprovalType" >
+    insert into user_approval_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="approvalTypeId != null" >
+        approval_type_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="approvalTypeId != null" >
+        #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 获取用户收藏流程 -->
+  <select id="getCollectInfoByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select *
+  	from user_approval_type 
+  	where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+  	<select id="selectByUserId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select
+		approval_type_id
+		from user_approval_type
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	<!-- 删除收藏 -->
+	<delete id="deleteByUserIdAndApprovalType" parameterType="java.util.Map">
+		delete from user_approval_type
+		where approval_type_id = #{approvalTypeId,jdbcType=VARCHAR} and user_id =
+		#{userId,jdbcType=VARCHAR}
+	</delete>
+    <delete id="deleteByUserIdAndTypeId" parameterType="java.lang.String">
+    delete from user_approval_type
+    where approval_type_id= #{approvalTypeId} 
+  
+  </delete>
+</mapper>

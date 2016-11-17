@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.TAppMessageMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.TAppMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type_id" property="type" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="picurl" property="picurl" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="read_count" property="readCount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+	<result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+	<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+  </resultMap>
+  	<resultMap id="BaseResultMapVo" type="cmcc.mobile.admin.vo.AppMessageVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="type_id" property="typeId" jdbcType="BIGINT" />
+		<result column="uid" property="uid" jdbcType="BIGINT" />
+		<result column="uname" property="uname" jdbcType="VARCHAR" />
+		<result column="picurl" property="picurl" jdbcType="VARCHAR" />
+		<result column="modify_time" property="modifyTime" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="cid" property="cid" jdbcType="BIGINT" />
+		<result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="cname" property="cname" jdbcType="VARCHAR" />
+		<result column="dname" property="dname" jdbcType="VARCHAR" />
+		<result column="file_path" property="filePath" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    id, title, type_id, user_id, user_name, picurl, modify_time, create_time, company_id, sort, read_count, 
+    status,detail,content,file_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select  t.*,o.org_name as dname
+    from t_app_message t 
+    left join user u on 
+    u.id = t.user_id 
+    left join organization o  on 
+    u.org_id = o.id 
+    where t.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_app_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.TAppMessage" >
+    insert into t_app_message (id, title, type_id, 
+      user_id, user_name, picurl, 
+      modify_time, create_time, company_id, 
+      sort, read_count, status,detail,content,file_path)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=BIGINT}, 
+      #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{picurl,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{companyId,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{readCount,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR},#{detail,jdbcType=LONGVARCHAR},#{content,jdbcType=LONGVARCHAR},#{filePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.TAppMessage" >
+    insert into t_app_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="picurl != null" >
+        picurl,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="readCount != null" >
+        read_count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+        <if test="content != null" >
+        content,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+       <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+         <if test="filePath != null" >
+        #{filePath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.TAppMessage" >
+    update t_app_message
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type_id = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        picurl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        read_count = #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+        </if>
+       <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+        </if>
+          <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=LONGVARCHAR},
+        </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.TAppMessage" >
+    update t_app_message
+    set title = #{title,jdbcType=VARCHAR},
+      type_id = #{type,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      comapny_id = #{company_Id,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      read_count = #{readCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      file_path = #{filePath,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 获取历史通知公告 -->
+  	<select id="selectByHistroyNotice" resultMap="BaseResultMapVo"
+		parameterType="java.util.Map">
+		select * from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime != null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT} AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND type_id = #{type,jdbcType=BIGINT}
+		</if>
+
+			AND status !='9'
+		order by sort asc,create_time desc
+			<if test="startRow != null and endRow != null">
+			limit
+			#{startRow,jdbcType=BIGINT},#{endRow,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	  <update id="updateById" parameterType="java.lang.Long" >
+    	update t_app_message set status = '9' where id = #{id}
+  		</update>
+  		
+  	<select id="selectCountByHistroyNotice" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime != null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT} AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND type_id = #{type,jdbcType=BIGINT}
+		</if>
+		<if test="status != null">
+			AND status = #{status,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	
+	  	<select id="selectAllParams" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select * from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+				<if test="createTime !=null">
+		<![CDATA[AND create_time >= #{createTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND type_id = #{type,jdbcType=BIGINT}
+		</if>
+			AND status !='9'
+		order by sort asc,create_time desc
+			<if test="startRow != null and endRow != null">
+			limit
+			#{startRow,jdbcType=BIGINT},#{endRow,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	
+	<select id="selectCountAllParams" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime != null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT} AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="createTime !=null">
+		<![CDATA[AND create_time >= #{createTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND type_id = #{type,jdbcType=BIGINT}
+		</if>
+
+			AND status !='9'
+
+	</select>
+
+
+<select id="selectAllByMap1" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select * from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="createTime !=null">
+	<![CDATA[AND create_time >= #{createTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND (type_id =2 or type_id=3)
+		</if>
+			AND status !='9'
+		order by sort asc,create_time desc
+			<if test="startRow != null and endRow != null">
+			limit
+			#{startRow,jdbcType=BIGINT},#{endRow,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	
+	<select id="selectCountAllByMap1" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from t_app_message where company_id 
+		= #{companyId,jdbcType=VARCHAR}
+		<if test="title != null">
+			AND title like
+			CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="beginTime != null and endTime != null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT} AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime != null and endTime == null">
+  			<![CDATA[AND create_time >= #{beginTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="beginTime == null and endTime != null">
+  			<![CDATA[AND create_time <= #{endTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="createTime !=null">
+		<![CDATA[AND create_time >= #{createTime,jdbcType=BIGINT}]]>
+		</if>
+		<if test="type != null">
+			AND (type_id =2 or type_id=3)
+		</if>
+
+			AND status !='9'
+
+	</select>
+</mapper>

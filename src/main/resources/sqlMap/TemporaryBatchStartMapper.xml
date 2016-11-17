@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.TemporaryBatchStartMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.TemporaryBatchStart" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="third_id" property="thirdId" jdbcType="VARCHAR" />
+    <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="approval_type" property="approvalType" jdbcType="VARCHAR" />
+    <result column="task_id" property="taskId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, third_id, flow_id, type_id, mobile, create_date, company_id, user_name, 
+    approval_table_config_id, approval_type, task_id, status, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from temporary_batch_start
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from temporary_batch_start
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.TemporaryBatchStart" >
+    insert into temporary_batch_start (id, user_id, third_id, 
+      flow_id, type_id, mobile, 
+      create_date, company_id, user_name, 
+      approval_table_config_id, approval_type, task_id, 
+      status, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{thirdId,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{approvalTableConfigId,jdbcType=VARCHAR}, #{approvalType,jdbcType=VARCHAR}, #{taskId,jdbcType=BIGINT}, 
+      #{status,jdbcType=BIT}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.TemporaryBatchStart" >
+    insert into temporary_batch_start
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="thirdId != null" >
+        third_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="approvalType != null" >
+        approval_type,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalType != null" >
+        #{approvalType,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.TemporaryBatchStart" >
+    update temporary_batch_start
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        third_id = #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalType != null" >
+        approval_type = #{approvalType,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.TemporaryBatchStart" >
+    update temporary_batch_start
+    set user_id = #{userId,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      flow_id = #{flowId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      approval_type = #{approvalType,jdbcType=VARCHAR},
+      task_id = #{taskId,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+	<!-- 查询代办是否是批量发起的 -->
+	<select id="findByThirdId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from temporary_batch_start where status = 1 and third_id=#{thirdId}
+		limit 1
+	</select>
+
+	<update id="updateByThirdId" parameterType="cmcc.mobile.admin.entity.TemporaryBatchStart">
+
+		update temporary_batch_start
+		<set>
+			<if test="flowId != null">
+				flow_id = #{flowId}
+			</if>
+		</set>
+		where third_id=#{thirdId} and task_id = #{taskId}
+	</update>
+
+</mapper>

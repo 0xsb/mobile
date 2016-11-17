@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalType" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="approval_most_type_id" property="approvalMostTypeId" jdbcType="VARCHAR" />
+    <result column="third_approval_start_link" property="thirdApprovalStartLink" jdbcType="VARCHAR" />
+    <result column="third_company_id" property="thirdCompanyId" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="VARCHAR" />
+    <result column="is_boutique" property="isBoutique" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="third_config_link" property="thirdConfigLink" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="scene" property="scene" jdbcType="INTEGER" />
+  </resultMap>
+    <resultMap id="BaseResultMaps" type="cmcc.mobile.admin.vo.ApprovalVo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="startDate" property="startDate" jdbcType="VARCHAR" />
+    <result column="endDate" property="endDate" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="describeName" property="describeName" jdbcType="VARCHAR" />
+    <result column="re_name" property="re_name" jdbcType="VARCHAR" />
+    <result column="controlId" property="controlId" jdbcType="VARCHAR" />
+    <result column="companyId" property="companyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="cmcc.mobile.admin.vo.ApprovalWyyVo" id="BaseResult">
+  <id column="id" property="id" jdbcType="VARCHAR"/>
+  <result column="wyy_id" property="wyyId" jdbcType="VARCHAR"/>
+  <result column="name" property="name" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, des, icon, name, remark, approval_table_config_id, approval_most_type_id, third_approval_start_link, 
+    third_company_id, is_default, is_boutique, status, create_time, third_config_link, 
+    company_id, scene
+  </sql>
+
+
+	
+	<!-- 获取应用对应的字段名称 -->
+	 <select id="selectByName" resultMap="BaseResultMaps" parameterType="cmcc.mobile.admin.vo.ApprovalVo">
+		select u.re_name ,u.describe_name as describeName,u.control_id as controlId,a.name as type
+		from approval_type a 
+		left join
+		approval_table_config_details u 
+		on a.approval_table_config_id = u.approval_table_config_id 
+		where a.company_id = #{companyId}
+		<if test="type !=null">		
+		 and a.name=#{type} 
+		 </if>and u.re_name !='DDAttachment600'; 
+	</select>
+	<!-- 获取对应的value -->
+	 <select id="selectByValue" resultMap="BaseResultMaps" parameterType="cmcc.mobile.admin.vo.ApprovalVo">
+		select u.json_data as name ,u.draft_date,b.user_name as userName ,u.user_id as userId
+		from approval_type a 
+		left join
+		approval_data u 
+		on a.approval_table_config_id = u.approval_table_config_id 
+		left join
+		user b on u.user_id = b.id
+		<if test="companyId !=null">
+		where a.company_id = #{companyId} 
+		</if>
+		<if test="type !=null">
+		and a.name=#{type} ;
+		</if>
+		<if test="userId !=null">
+		and u.user_id = #{userId}
+		</if> 
+		<if test="startDate !=null">
+		and  DATEDIFF(DATE_FORMAT( u.draft_date, '%Y-%m-%d') ,#{startDate}) >= 0
+		</if>
+		<if test="endDate !=null">
+		and DATEDIFF(#{endDate},DATE_FORMAT( u.draft_date, '%Y-%m-%d'))  >=0
+		</if>
+	</select>
+	<select id="selectByJson" resultMap="BaseResultMaps" parameterType="cmcc.mobile.admin.vo.ApprovalVo">
+		select u.json_data as name ,u.draft_date,b.user_name as userName ,u.user_id as userId
+		from approval_data u  
+		left join
+		approval_type a
+		on a.approval_table_config_id = u.approval_table_config_id 
+		left join
+		user b on u.user_id = b.id
+		<if test="companyId !=null">
+		where a.company_id = #{companyId} 
+		</if>
+		<if test="type !=null">
+		and a.name = #{type} 
+		</if>
+		<if test="userName !=null">
+		and b.user_name = #{userName} 
+		</if>
+		<if test="startDate !=null">
+		and  DATEDIFF(DATE_FORMAT( u.draft_date, '%Y-%m-%d') ,#{startDate}) >= 0
+		</if>
+		<if test="endDate !=null">
+		and DATEDIFF(#{endDate},DATE_FORMAT( u.draft_date, '%Y-%m-%d'))  >=0 ;
+		</if>
+	</select>
+	
+	<select id="selectByWyy" resultMap="BaseResult" parameterType="map">
+		select b.id,b.name,b.wyy_id from approval_wyy_company a left join 
+		approval_most_type b on a.wyy_id = b.wyy_id where  a.company_id = #{companyId}
+		</select>
+	<!-- 获取首页轮播图 -->
+	<select id="selectByImage" resultMap="BaseResult" >
+		select * from approval_wyy_image where  status !='1'
+		</select>
+</mapper>

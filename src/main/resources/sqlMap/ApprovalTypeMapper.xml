@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalTypeMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalType" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="approval_most_type_id" property="approvalMostTypeId" jdbcType="VARCHAR" />
+    <result column="third_approval_start_link" property="thirdApprovalStartLink" jdbcType="VARCHAR" />
+    <result column="third_company_id" property="thirdCompanyId" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="VARCHAR" />
+    <result column="is_boutique" property="isBoutique" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="third_config_link" property="thirdConfigLink" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="scene" property="scene" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, des, icon, name, remark, approval_table_config_id, approval_most_type_id, third_approval_start_link, 
+    third_company_id, is_default, is_boutique, status, create_time, third_config_link, 
+    company_id, scene,create_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_type
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_type
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalType" >
+    insert into approval_type (id, des, icon, 
+      name, remark, approval_table_config_id, 
+      approval_most_type_id, third_approval_start_link, 
+      third_company_id, is_default, is_boutique, 
+      status, create_time, third_config_link, 
+      company_id, scene,create_user_id)
+    values (#{id,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{approvalTableConfigId,jdbcType=VARCHAR}, 
+      #{approvalMostTypeId,jdbcType=VARCHAR}, #{thirdApprovalStartLink,jdbcType=VARCHAR}, 
+      #{thirdCompanyId,jdbcType=VARCHAR}, #{isDefault,jdbcType=VARCHAR}, #{isBoutique,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{thirdConfigLink,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=VARCHAR}, #{scene,jdbcType=INTEGER},#{createUserId})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalType" >
+    insert into approval_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="approvalMostTypeId != null" >
+        approval_most_type_id,
+      </if>
+      <if test="thirdApprovalStartLink != null" >
+        third_approval_start_link,
+      </if>
+      <if test="thirdCompanyId != null" >
+        third_company_id,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="isBoutique != null" >
+        is_boutique,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="thirdConfigLink != null" >
+        third_config_link,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="scene != null" >
+        scene,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalMostTypeId != null" >
+        #{approvalMostTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdApprovalStartLink != null" >
+        #{thirdApprovalStartLink,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCompanyId != null" >
+        #{thirdCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="isBoutique != null" >
+        #{isBoutique,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdConfigLink != null" >
+        #{thirdConfigLink,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="scene != null" >
+        #{scene,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalType" >
+    update approval_type
+    <set >
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalMostTypeId != null" >
+        approval_most_type_id = #{approvalMostTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdApprovalStartLink != null" >
+        third_approval_start_link = #{thirdApprovalStartLink,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdCompanyId != null" >
+        third_company_id = #{thirdCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="isBoutique != null" >
+        is_boutique = #{isBoutique,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdConfigLink != null" >
+        third_config_link = #{thirdConfigLink,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="scene != null" >
+        scene = #{scene,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalType" >
+    update approval_type
+    set des = #{des,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      approval_most_type_id = #{approvalMostTypeId,jdbcType=VARCHAR},
+      third_approval_start_link = #{thirdApprovalStartLink,jdbcType=VARCHAR},
+      third_company_id = #{thirdCompanyId,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=VARCHAR},
+      is_boutique = #{isBoutique,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      third_config_link = #{thirdConfigLink,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      scene = #{scene,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 获取置顶流程  大于1000 置顶 0 到 1000 默认  -->
+	<select id="getTopProcess" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select b.*
+		from approval_most_type a left join
+		approval_type b on a.id = b.approval_most_type_id
+		where <![CDATA[ b.is_default >= 1000]]>
+		and b.status = '1'
+		and b.company_id = #{companyId,jdbcType=VARCHAR}
+		and a.wyy_id = #{wyyId}
+		order by is_default asc
+	</select>
+	
+	<!-- 获取默认流程 -->
+	<select id="getDefaultProcess" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select b.*
+		from approval_most_type a left join
+		approval_type b on a.id = b.approval_most_type_id
+		where b.is_default >0 and b.is_default &lt; 1000
+		and b.status = '1'
+		and b.company_id = #{companyId,jdbcType=VARCHAR}
+		and a.wyy_id = #{wyyId}
+		order by is_default asc
+	</select>
+	
+	<!-- 根据typeId 获取流程 -->
+	<select id="getApprovalTypeById" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select b.*
+		from approval_most_type a left join
+		approval_type b on a.id = b.approval_most_type_id
+		where b.status = '1'
+		and b.company_id = #{companyId,jdbcType=VARCHAR}
+		and b.id = #{id}
+		and a.wyy_id = #{wyyId}
+		order by is_default asc
+	</select>
+	
+	
+	<!-- 根据typeId 获取流程 -->
+	<select id="getApprovalTypeById2" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select *
+		from approval_type 
+		where id=#{id,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR} 
+	</select>
+	
+	<!--根据Name 获取流程类型 -->
+	<select id="getApprovalTypeByName" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		select *
+		from approval_type 
+		where name=#{name,jdbcType=VARCHAR} and company_id = #{companyId,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 获取默认收藏 -->
+	 <select id="selectBydefault" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from approval_type
+		where is_default >0 and is_default &lt; 1000 and company_id = #{companyId}
+	</select>
+	
+	<select id="getEnabledFlow" parameterType="java.util.Map"
+		resultType="cmcc.mobile.admin.vo.ApprovalTypeResultVo">
+		select
+		b.id, b.des, b.icon, b.name, b.remark, b.approval_table_config_id as
+		approvalTableConfigId,
+		b.approval_most_type_id as approvalMostTypeId,
+		b.third_approval_start_link as
+		thirdApprovalStartLink,
+		b.is_default as isDefault,
+		b.third_company_id as
+		thirdCompanyId, b.is_boutique as isBoutique, b.status,
+		b.third_config_link as
+		thirdConfigLink,scene
+		from approval_most_type a left join approval_type b on a.id = b.approval_most_type_id where b.status = '1' 
+		<if test="companyId != null and companyId != ''">
+			and b.company_id = #{companyId}
+		</if>
+		<if test="wyyId !=null">
+		and a.wyy_id =#{wyyId}		
+		</if>
+		<if test="userId !=null">
+		and b.create_user_id =#{userId}		
+		</if>
+	</select>
+	
+		<!-- 根据权限获取默认流程 -->
+	<select id="getProcess" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select b.*
+		from approval_most_type a left join
+		approval_type b on a.id = b.approval_most_type_id
+		where b.is_default >0 and b.is_default &lt; 1000
+		and b.status = '1'
+		and b.id in     
+		<foreach collection="id" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>	
+		order by is_default asc
+	</select>
+
+	<select id="selectIds" resultType="String" parameterType="java.util.Map">
+		SELECT
+		t.id
+		FROM
+		approval_type t
+		INNER JOIN approval_most_type m
+		ON t.approval_most_type_id = m.id
+		<where>
+			<if test="companyId != null and companyId != ''">
+				and t.company_id = #{companyId}
+			</if>
+			<if test="wyyId !=null">
+				and m.wyy_id =#{wyyId}
+			</if>
+			<if test="mostTypeId !=null">
+				and t.approval_most_type_id =#{mostTypeId}
+			</if>
+		</where>
+	</select>
+</mapper>

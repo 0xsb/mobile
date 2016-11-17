@@ -1,0 +1,276 @@
+@charset "utf-8";
+.select-list {
+    position: absolute;
+    width: 85%;
+    background: white;
+    box-shadow: rgba(0,0,0,.8) 2px 2px 5px, rgba(0,0,0,.8) -2px -2px 5px;
+    border-radius: 3px;
+    .fixed-center;
+    ul {
+        max-height: 20rem;
+        overflow-y: auto;
+    }
+    li {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid @border-color;
+        background: url(./img/select.png) 95% center no-repeat;
+        cursor: pointer;
+        &:first-of-type {
+            border-top: none;
+        }
+        &.current {
+            background-image: url(./img/select-current.png);
+        }
+    }
+}
+.list-add {
+    background: white;
+    width: 80%;
+    position: absolute;
+    border: 1px solid @border-color;
+    border-radius: 3px;
+    .fixed-center;
+    h6 {
+        height: 2rem;
+        line-height: 2rem;
+        padding: 0 0.5rem;
+        color: @color-grey;
+        font-size: 0.75rem;
+        font-weight: normal;
+    }
+    input {
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        border: 1px solid @border-color;
+        border-width: 1px 0;
+        border-radius: 3px;
+        padding: 0 0.5rem;
+        outline: none;
+    }
+    .buttons {
+        height: 2rem;
+        line-height: 2rem;
+        a {
+            display: block;
+            width: 50%;
+            text-align: center;
+            float: left;
+            &:first-of-type {
+                border-right: 1px solid @border-color;
+            }
+        }
+    }
+}
+.list-outer-btn {
+    position: absolute;
+    width: 100%;
+    display: block;
+    background: white;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border: 1px solid @border-color;
+    color: @color-blue;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.8) 2px 1px 2px, rgba(0, 0, 0, 0.8) -2px -1px 2px;
+}
+.list-add-btn {
+    top: -2.5rem;
+    .list-outer-btn;
+}
+.list-submit-btn {
+    bottom: -2.5rem;
+    .list-outer-btn;
+}
+
+.list-search {
+    border-bottom: 1px solid @border-color;
+    padding: 0.5rem;
+    text-align: center;
+    position: relative;
+    input.search {
+        width: 100%;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0 0.5rem;
+        font-size: 0.875rem;
+    }
+    input.search-btn {
+        position: absolute;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        width: 3rem;
+        text-align: center;;
+        border-radius: 0.5rem;
+        color: @color-blue;
+        background: transparent;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
+.full-list {
+    position: fixed;
+    background: @bgcolor-grey;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    .list-header {
+        height: 3rem;
+        line-height: 3rem;
+        width: 100%;
+        border-bottom: 1px solid @border-color;
+        .back {
+            display: inline-block;
+            height: 3rem;
+            width: 3rem;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            border-right: 1px solid @border-color;
+        }
+        & > span {
+            margin: 0 0.75rem;
+        }
+    }
+    .emp-part {
+        margin-bottom: 1rem;
+    }
+    ul {
+        background: white;
+    }
+    li {
+        line-height: 2rem;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid @border-color;
+        cursor: pointer;
+        position: relative;
+        .avatar:extend(.avatar-base) {
+            width: 2rem;
+            height: 2rem;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+        .name {
+            padding-left: 1rem;
+        }
+        &.active::after {
+            content: ' ';
+            position: absolute;
+            border-radius: 50%;
+            border: 3px #36f solid;
+            right: 0.75rem;
+            top: 1.125rem;
+            height: .5rem;
+            width: .5rem;
+        }
+    }
+
+    .listItem {
+        line-height: 2rem;
+        padding: 0.5rem 2.25rem;
+        border-bottom: 1px solid @border-color;
+        background: white;
+        display: block;
+    }
+    .breadcrumb {
+        padding: 0 0.25rem;
+        font-size: 0.75rem;
+        background: white;
+        border-bottom: 2px solid @border-color;
+        line-height: 1.5rem;
+        position: relative;
+        box-sizing: content-box;
+        span {
+            margin-right: 1rem;
+            position: relative;
+            color: @color-blue;
+            display: inline-block;
+            cursor: pointer;
+            &:last-of-type {
+                color: black;
+            }
+            &:before, &:after {
+                content: '';
+                width: 0;
+                height: 0;
+                border-top: 0.75rem solid transparent;
+                border-bottom: 0.75rem solid transparent;
+                position: absolute;
+                top: 0;
+            }
+            &:before {
+                border-left: 0.75rem solid @border-color;
+                right: -0.875rem;
+            }
+            &:after {
+                border-left: 0.75rem solid white;
+                right: -0.75rem;
+            }
+            &:last-of-type:after, &:last-of-type:before  {
+                border: 0;
+            }
+        }
+    }
+    .selected-emps {
+        background: white;
+        border-bottom: 1px solid @border-color;
+        .approver-item {
+            float: left;
+            text-align: center;
+            cursor: pointer;
+            margin: 0.75rem 0.75rem 0 0;
+            width: 3.875rem;
+            height: 3.25rem;
+            .avatar {
+                width: 2rem;
+                height: 2rem;
+                line-height: 2rem;
+                font-size: 0.75rem;
+                border-radius: 50%;
+                text-align: center;
+                color: white;
+                margin: auto;
+                font-weight: 100;
+            }
+            .name {
+                font-size: 0.75rem;
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+    .ok-button {
+        display: block;
+        width: 60%;
+        margin: .5rem auto;
+        background: @baseColor;
+        text-align: center;
+        padding: .25rem;
+        border-radius: 1rem;
+        color: white;
+    }
+}
+
+.multi-user-select > .ok-button {
+    display: block;
+    background: @bgcolor-blue;
+    color: white;
+    height: 2rem;
+    line-height: 2rem;
+    width: 4rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    margin: 0;
+    padding: 0;
+    right: 0.5rem;
+}

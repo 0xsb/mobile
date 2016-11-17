@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta
+	content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;"
+	id="viewport" name="viewport" />
+<title>移动审批</title>
+<!--<link href="css/public.css" type="text/css" rel="stylesheet">-->
+
+<style type="text/css">
+body {
+    background-image: url(image/bg.JPG);
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    color: white;
+    font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;
+}
+div{
+	 width: 100%;
+    height:auto;
+	overflow:hidden;
+    box-sizing: border-box;
+}
+.container {
+    width: 100%;
+    height:auto;
+	overflow:hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+.box {
+    width: 100%;
+    height:auto;
+	overflow:hidden;
+    box-sizing: border-box;
+    position: relative;
+}
+img {	
+	border:0;
+	font-size:0;
+}
+.note-title {
+    text-align: center; color: #ddd;
+}
+.note-subtitle {
+    margin: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+.btnbox {
+    width: 8rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: #fff;
+    text-align: center;
+    background: #666;
+    margin: 0.5rem auto;
+    border-radius: 1rem;
+}
+.btn_link {
+    color: #fff;
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="box"><img width="100%" alt="" src="image/building_1.JPG"></div>
+    <div class="box"><img width="100%" alt="" src="image/building_2.JPG"></div>
+    <div class="box"><img width="100%" alt="" src="image/building_3.JPG"></div>
+    <div class="box"><img width="100%" alt="" src="image/building_4.JPG"></div>
+    <div class="box"><img width="100%" alt="" src="image/building_5.JPG"></div>
+    <div class="box"><img width="100%" alt="" src="image/building_6.JPG"></div>
+
+    <div class="box">
+        <form id="add_form" class="note-title">
+            <div style="color:red;">您现在就可免费申请开通试用</div>
+            <div>请留下您的联系方式(手机，电话，Email等)</div>
+            <input id="add_input" type="text" maxlength="20" placeholder="请输入您的联系方式">
+            <button>我要咨询</button>
+            <div>或联系您单位的客户经理申请开通</div>
+        </form>
+        <br>
+        <div class="note-title">
+            <div>您还可通过以下方式</div>
+			<div>立即体验移动审批应用</div>
+		</div>
+        <div class="note-subtitle">
+            体验移动审批流程：
+		</div>
+
+        <div>
+            <div class="btnbox">
+                <a class="btn_link ui-link" href="/mobile/moblicApprove/toLogin.do?FromUserTelNum=13800000001">我是员工</a>
+            </div>
+            <div class="btnbox">
+                <a class="btn_link ui-link" href="/mobile/moblicApprove/toLogin.do?FromUserTelNum=13800000003">我是经理</a>
+            </div>
+            <div class="btnbox">
+                <a class="btn_link ui-link" href="/mobile/moblicApprove/toLogin.do?FromUserTelNum=13800000002">我是老板</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+			<p style="font-weight: bolder;">
+				体验审批流程后台配置功能：
+			</p>
+		</div>
+
+		<div>
+			<p style="text-align: left;color: #EFF0F0;word-break: break-all;">
+			   您可以使用IE9以上或者google Chrome等浏览器，在地址栏输入以下网址:
+			</p>
+			<p style="text-align: left;color: #EFF0F0;word-break: break-all;">
+                http://112.4.17.101:6686/spadmin/login.do
+			</p>
+			<p style="text-align: left;margin-bottom: 20px;color: #EFF0F0;">
+                账号/密码：13800000000 / 111111
+			</p>
+		</div>
+    </div>
+</div>
+<script>
+    document.getElementById('add_form').onsubmit = function (e) {
+        e.preventDefault();
+
+        var msg = document.getElementById('add_input').value;
+        if (msg.length === 0) {
+            alert('请先输入您的联系方式！'); return;
+        }
+
+        var xhr = new window.XMLHttpRequest();
+        xhr.open('POST', '../../approval/addOther.do', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.setRequestHeader('Accept', 'text/plain, */*;');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    alert('申请成功!');
+                    document.getElementById('add_form').reset();
+                } else {
+                    //error
+                }
+            }
+        };
+
+        xhr.send('message=' + msg);
+    };
+</script>
+</body>
+</html>

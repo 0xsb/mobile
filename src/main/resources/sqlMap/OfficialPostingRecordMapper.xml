@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.OfficialPostingRecordMapper">
+	<resultMap id="BaseResultMap"
+		type="cmcc.mobile.admin.entity.OfficialPostingRecord">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="type_id" property="typeId" jdbcType="VARCHAR" />
+		<result column="year" property="year" jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, type_id, year, number, create_time, status, company_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from official_posting_record
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from official_posting_record
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.OfficialPostingRecord">
+		insert into official_posting_record (id, type_id, year,
+		number, create_time, status,
+		company_id)
+		values (#{id,jdbcType=BIGINT}, #{typeId,jdbcType=VARCHAR},
+		#{year,jdbcType=INTEGER},
+		#{number,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{companyId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.OfficialPostingRecord">
+		insert into official_posting_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="typeId != null">
+				type_id,
+			</if>
+			<if test="year != null">
+				year,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				#{year,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.OfficialPostingRecord">
+		update official_posting_record
+		<set>
+			<if test="typeId != null">
+				type_id = #{typeId,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				year = #{year,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.OfficialPostingRecord">
+		update official_posting_record
+		set type_id = #{typeId,jdbcType=VARCHAR},
+		year = #{year,jdbcType=INTEGER},
+		number = #{number,jdbcType=BIGINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		company_id = #{companyId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 查询一个流程今年最后一次的发文记录 -->
+	<select id="findByTypeIdAndYear" parameterType="cmcc.mobile.admin.entity.OfficialPostingRecord"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from official_posting_record where type_id = #{typeId} and
+		year=#{year} and company_id=#{companyId}
+		order by id desc limit 1
+
+	</select>
+</mapper>

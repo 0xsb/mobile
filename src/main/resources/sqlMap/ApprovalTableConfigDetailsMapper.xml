@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalTableConfigDetailsMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="describe_name" property="describeName" jdbcType="VARCHAR" />
+    <result column="is_effective" property="isEffective" jdbcType="VARCHAR" />
+    <result column="is_merge" property="isMerge" jdbcType="VARCHAR" />
+    <result column="is_required" property="isRequired" jdbcType="VARCHAR" />
+    <result column="is_storage" property="isStorage" jdbcType="VARCHAR" />
+    <result column="re_name" property="reName" jdbcType="VARCHAR" />
+    <result column="sequence" property="sequence" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="control_id" property="controlId" jdbcType="VARCHAR" />
+    <result column="exp" property="exp" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="previous_id" property="previousId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" extends="BaseResultMap" >
+    <result column="json_data" property="jsonData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, describe_name, is_effective, is_merge, is_required, is_storage, re_name, sequence, 
+    approval_table_config_id, control_id, exp, value, previous_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    json_data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from approval_table_config_details
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_table_config_details
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    insert into approval_table_config_details (id, describe_name, is_effective, 
+      is_merge, is_required, is_storage, 
+      re_name, sequence, approval_table_config_id, 
+      control_id, exp, value, 
+      previous_id, json_data)
+    values (#{id,jdbcType=VARCHAR}, #{describeName,jdbcType=VARCHAR}, #{isEffective,jdbcType=VARCHAR}, 
+      #{isMerge,jdbcType=VARCHAR}, #{isRequired,jdbcType=VARCHAR}, #{isStorage,jdbcType=VARCHAR}, 
+      #{reName,jdbcType=VARCHAR}, #{sequence,jdbcType=VARCHAR}, #{approvalTableConfigId,jdbcType=VARCHAR}, 
+      #{controlId,jdbcType=VARCHAR}, #{exp,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{previousId,jdbcType=VARCHAR}, #{jsonData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    insert into approval_table_config_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="describeName != null" >
+        describe_name,
+      </if>
+      <if test="isEffective != null" >
+        is_effective,
+      </if>
+      <if test="isMerge != null" >
+        is_merge,
+      </if>
+      <if test="isRequired != null" >
+        is_required,
+      </if>
+      <if test="isStorage != null" >
+        is_storage,
+      </if>
+      <if test="reName != null" >
+        re_name,
+      </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="controlId != null" >
+        control_id,
+      </if>
+      <if test="exp != null" >
+        exp,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="previousId != null" >
+        previous_id,
+      </if>
+      <if test="jsonData != null" >
+        json_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="describeName != null" >
+        #{describeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEffective != null" >
+        #{isEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="isMerge != null" >
+        #{isMerge,jdbcType=VARCHAR},
+      </if>
+      <if test="isRequired != null" >
+        #{isRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="isStorage != null" >
+        #{isStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="reName != null" >
+        #{reName,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlId != null" >
+        #{controlId,jdbcType=VARCHAR},
+      </if>
+      <if test="exp != null" >
+        #{exp,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="previousId != null" >
+        #{previousId,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonData != null" >
+        #{jsonData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    update approval_table_config_details
+    <set >
+      <if test="describeName != null" >
+        describe_name = #{describeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEffective != null" >
+        is_effective = #{isEffective,jdbcType=VARCHAR},
+      </if>
+      <if test="isMerge != null" >
+        is_merge = #{isMerge,jdbcType=VARCHAR},
+      </if>
+      <if test="isRequired != null" >
+        is_required = #{isRequired,jdbcType=VARCHAR},
+      </if>
+      <if test="isStorage != null" >
+        is_storage = #{isStorage,jdbcType=VARCHAR},
+      </if>
+      <if test="reName != null" >
+        re_name = #{reName,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlId != null" >
+        control_id = #{controlId,jdbcType=VARCHAR},
+      </if>
+      <if test="exp != null" >
+        exp = #{exp,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="previousId != null" >
+        previous_id = #{previousId,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonData != null" >
+        json_data = #{jsonData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    update approval_table_config_details
+    set describe_name = #{describeName,jdbcType=VARCHAR},
+      is_effective = #{isEffective,jdbcType=VARCHAR},
+      is_merge = #{isMerge,jdbcType=VARCHAR},
+      is_required = #{isRequired,jdbcType=VARCHAR},
+      is_storage = #{isStorage,jdbcType=VARCHAR},
+      re_name = #{reName,jdbcType=VARCHAR},
+      sequence = #{sequence,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      control_id = #{controlId,jdbcType=VARCHAR},
+      exp = #{exp,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      previous_id = #{previousId,jdbcType=VARCHAR},
+      json_data = #{jsonData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfigDetails" >
+    update approval_table_config_details
+    set describe_name = #{describeName,jdbcType=VARCHAR},
+      is_effective = #{isEffective,jdbcType=VARCHAR},
+      is_merge = #{isMerge,jdbcType=VARCHAR},
+      is_required = #{isRequired,jdbcType=VARCHAR},
+      is_storage = #{isStorage,jdbcType=VARCHAR},
+      re_name = #{reName,jdbcType=VARCHAR},
+      sequence = #{sequence,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      control_id = #{controlId,jdbcType=VARCHAR},
+      exp = #{exp,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      previous_id = #{previousId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据confId获取信息 -->
+  <select id="getApprovalInfoById" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select *
+		from approval_table_config_details
+		where
+		approval_table_config_id =
+		#{approval_table_config_id,jdbcType=VARCHAR}
+		order by sequence asc
+	</select>
+  
+</mapper>

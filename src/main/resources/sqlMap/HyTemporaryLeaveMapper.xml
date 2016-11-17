@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.HyTemporaryLeaveMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.HyTemporaryLeave" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="leavetype" property="leavetype" jdbcType="VARCHAR" />
+    <result column="leavereason" property="leavereason" jdbcType="VARCHAR" />
+    <result column="leaveday" property="leaveday" jdbcType="DECIMAL" />
+    <result column="startdate" property="startdate" jdbcType="VARCHAR" />
+    <result column="enddata" property="enddata" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="leavedate" property="leavedate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, leavetype, leavereason, leaveday, startdate, enddata, approval_table_config_id, 
+    org_id, user_id, flow_id, leavedate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hy_temporary_leave
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hy_temporary_leave
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.HyTemporaryLeave" >
+    insert into hy_temporary_leave (id, leavetype, leavereason, 
+      leaveday, startdate, enddata, 
+      approval_table_config_id, org_id, user_id, 
+      flow_id, leavedate)
+    values (#{id,jdbcType=VARCHAR}, #{leavetype,jdbcType=VARCHAR}, #{leavereason,jdbcType=VARCHAR}, 
+      #{leaveday,jdbcType=DECIMAL}, #{startdate,jdbcType=VARCHAR}, #{enddata,jdbcType=VARCHAR}, 
+      #{approvalTableConfigId,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=VARCHAR}, #{leavedate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.HyTemporaryLeave" >
+    insert into hy_temporary_leave
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="leavetype != null" >
+        leavetype,
+      </if>
+      <if test="leavereason != null" >
+        leavereason,
+      </if>
+      <if test="leaveday != null" >
+        leaveday,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="enddata != null" >
+        enddata,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="leavedate != null" >
+        leavedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="leavetype != null" >
+        #{leavetype,jdbcType=VARCHAR},
+      </if>
+      <if test="leavereason != null" >
+        #{leavereason,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveday != null" >
+        #{leaveday,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddata != null" >
+        #{enddata,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        #{leavedate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.HyTemporaryLeave" >
+    update hy_temporary_leave
+    <set >
+      <if test="leavetype != null" >
+        leavetype = #{leavetype,jdbcType=VARCHAR},
+      </if>
+      <if test="leavereason != null" >
+        leavereason = #{leavereason,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveday != null" >
+        leaveday = #{leaveday,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddata != null" >
+        enddata = #{enddata,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        leavedate = #{leavedate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.HyTemporaryLeave" >
+    update hy_temporary_leave
+    set leavetype = #{leavetype,jdbcType=VARCHAR},
+      leavereason = #{leavereason,jdbcType=VARCHAR},
+      leaveday = #{leaveday,jdbcType=DECIMAL},
+      startdate = #{startdate,jdbcType=VARCHAR},
+      enddata = #{enddata,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      flow_id = #{flowId,jdbcType=VARCHAR},
+      leavedate = #{leavedate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="getHyTemporaryLeaveList" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    user_id
+    from hy_temporary_leave
+    where org_id = #{orgid,jdbcType=VARCHAR} 
+    <![CDATA[  and (month(date_format(startdate,'%Y-%m-%d'))<= #{month}]]>
+    and year(date_format(startdate,'%Y-%m-%d'))=#{year}) 
+    <![CDATA[  and (month(date_format(enddata,'%Y-%m-%d'))>=#{month} ]]>
+    and year(date_format(enddata,'%Y-%m-%d'))=#{year})
+    group by user_id
+  </select>
+  
+   <delete id="deleteAll">	
+  	delete from hy_temporary_leave
+  </delete>
+  
+  
+   <select id="getLeaveDays" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select sum(leaveday)  as leaveday
+  	from hy_temporary_leave 
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate >= #{startdate}]]>
+	<![CDATA[ and  enddata <= #{enddate}]]>
+	
+  </select>
+  
+   <select id="getLeaveDays2" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select sum(to_Days(DATE_FORMAT(#{enddate},'%Y-%m-%d'))-to_days(DATE_FORMAT(startdate,'%Y-%m-%d'))+1) as leaveday
+  	from hy_temporary_leave
+  	where org_id = #{orgid} 
+	<![CDATA[ and  startdate >= #{startdate}]]>
+	<![CDATA[ and  enddata >= #{enddate}]]>
+	<![CDATA[ and  startdate <= #{enddate}]]>
+	
+  </select>
+  
+  <select id="getLeaveDays3" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select sum(to_Days(DATE_FORMAT(enddata,'%Y-%m-%d'))-to_days(DATE_FORMAT(#{startdate},'%Y-%m-%d'))+1) as leaveday 
+  	from hy_temporary_leave 
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate <= #{startdate}]]>
+	<![CDATA[ and  enddata <= #{enddate}]]>
+	<![CDATA[ and  enddata >= #{startdate}]]> 
+	
+  </select>
+  
+  <!-- 请假时间 包围 查询起止时间 -->
+  <select id="getLeaveDays4" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select *
+  	from hy_temporary_leave
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate <= #{startdate}]]>
+	<![CDATA[ and  enddata >= #{enddate}]]>
+  </select>
+  
+  <update id="createTable" >  
+       CREATE TABLE hy_temporary_leave (
+			  id varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+			  leavetype varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '请假类型',
+			  leavereason varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+			  leaveday int(10) NOT NULL COMMENT '请假天数',
+			  startdate varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			  enddata varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			  approval_table_config_id varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+			  org_id varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+			  user_id varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+			  flow_id varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+			  leavedate varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+			  PRIMARY KEY (id)
+	  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+   </update>  
+   
+   <select id="selectNumByDate" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+   	 select sum(leaveday) as leaveday
+   	 from hy_temporary_leave 
+	 where  org_id = #{orgid}
+	 		<![CDATA[ and leavedate >= #{startdate}]]>
+	        <![CDATA[ and leavedate <= #{enddate}]]>
+   </select> 
+   
+   <select id="selectNumByDate2" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+   	 select *
+   	 from hy_temporary_leave 
+	 where  org_id = #{orgid}
+	 		<![CDATA[ and leavedate >= #{startdate}]]>
+	        <![CDATA[ and leavedate <= #{enddate}]]>
+	        group by user_id
+   </select> 
+   
+   <select id="getDayByOrg" parameterType="java.util.HashMap" resultMap="BaseResultMap"> 
+   	 select sum(leaveday) as leaveday,org_id
+   	 from hy_temporary_leave 
+	 where  <![CDATA[ leavedate >= #{startdate}]]>
+	        <![CDATA[ and leavedate <= #{enddate}]]>
+	        group by org_id 
+   </select>
+   
+   <select id="getNumByOrg" parameterType="java.util.HashMap" resultMap="BaseResultMap"> 
+   	 select *
+   	 from hy_temporary_leave 
+	 where  <![CDATA[ leavedate >= #{startdate}]]>
+	        <![CDATA[ and leavedate <= #{enddate}]]>
+	        group by org_id,user_id
+   </select>
+  
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalAuthorityMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalAuthority" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userIds" property="userids" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="wyy_id" property="wyyId" jdbcType="VARCHAR" />
+    <result column="report_userIds" property="reportUserIds" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userIds, role_id, create_time, create_user_id,update_time,update_user_id,wyy_id,report_userIds
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_authority
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_authority
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalAuthority" >
+    insert into approval_authority (id, userIds, role_id, 
+      create_time, create_user_id,wyy_id)
+    values (#{id,jdbcType=VARCHAR}, #{userids,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR},#{wyyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalAuthority" >
+    insert into approval_authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userids != null" >
+        userIds,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+        <if test="companyId != null" >
+        company_id,
+      </if>
+        <if test="wyyId != null" >
+        wyy_id,
+      </if>
+         <if test="reportUserIds != null" >
+        report_userIds,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userids != null" >
+        #{userids,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+         <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+       <if test="wyyId != null" >
+        #{wyyId,jdbcType=VARCHAR},
+      </if>
+         <if test="reportUserIds != null" >
+        #{reportUserIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalAuthority" >
+    update approval_authority
+    <set >
+      <if test="userids != null" >
+        userIds = #{userids,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+       <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+        <if test="wyyId != null" >
+        wyy_id = #{wyyId,jdbcType=VARCHAR},
+      </if>
+       <if test="reportUserIds != null" >
+        report_userIds = #{reportUserIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalAuthority" >
+    update approval_authority
+    set userIds = #{userids,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+       update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      wyy_id = #{wyyId,jdbcType=VARCHAR}
+       report_userIds = #{reportUserIds,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+    <select id="selectById" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_authority
+    where wyy_id = #{wyyId} 
+    	  and company_id = #{companyId}
+ 
+  </select>
+  
+</mapper>

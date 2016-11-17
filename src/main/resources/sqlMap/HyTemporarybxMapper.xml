@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.HyTemporarybxMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.HyTemporarybx" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="bx_type" property="bxType" jdbcType="VARCHAR" />
+    <result column="bx_money" property="bxMoney" jdbcType="DECIMAL" />
+    <result column="bx_date" property="bxDate" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bx_type, bx_money, bx_date, org_id, user_id, flow_id, approval_table_config_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hy_temporary_bx
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hy_temporary_bx
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.HyTemporarybx" >
+    insert into hy_temporary_bx (id, bx_type, bx_money, 
+      bx_date, org_id, user_id, 
+      flow_id, approval_table_config_id)
+    values (#{id,jdbcType=VARCHAR}, #{bxType,jdbcType=VARCHAR}, #{bxMoney,jdbcType=DECIMAL}, 
+      #{bxDate,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=VARCHAR}, #{approvalTableConfigId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.HyTemporarybx" >
+    insert into hy_temporary_bx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bxType != null" >
+        bx_type,
+      </if>
+      <if test="bxMoney != null" >
+        bx_money,
+      </if>
+      <if test="bxDate != null" >
+        bx_date,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bxType != null" >
+        #{bxType,jdbcType=VARCHAR},
+      </if>
+      <if test="bxMoney != null" >
+        #{bxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="bxDate != null" >
+        #{bxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.HyTemporarybx" >
+    update hy_temporary_bx
+    <set >
+      <if test="bxType != null" >
+        bx_type = #{bxType,jdbcType=VARCHAR},
+      </if>
+      <if test="bxMoney != null" >
+        bx_money = #{bxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="bxDate != null" >
+        bx_date = #{bxDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.HyTemporarybx" >
+    update hy_temporary_bx
+    set bx_type = #{bxType,jdbcType=VARCHAR},
+      bx_money = #{bxMoney,jdbcType=DECIMAL},
+      bx_date = #{bxDate,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      flow_id = #{flowId,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+    <select id="selectByDate" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+   select str_to_date(date_format(bx_date,'%Y-%m-%d'),'%Y-%m-%d') as bx_date,
+   	sum(bx_money) as bx_money
+   	from hy_temporary_bx where org_id = #{orgid}
+ 	<![CDATA[ and  bx_date >= #{startdate}]]>
+ 	<![CDATA[ and  bx_date <= #{enddate}]]>
+ 	group by date_format(bx_date,'%Y-%m-%d');
+  </select>
+  
+  <delete id="deleteAll">	
+  	delete from hy_temporary_bx
+  </delete>
+  
+  
+  <select id="getMoneyByOrg" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  	 select org_id,sum(bx_money) as bx_money
+   	 from hy_temporary_bx 
+   	 where <![CDATA[ bx_date >= #{startdate}]]>
+ 	 	   <![CDATA[ and  bx_date <= #{enddate}]]>
+ 	 group by org_id
+  </select>
+  
+  <select id="getBxNumByOrg" parameterType="java.util.HashMap" resultMap="BaseResultMap"> 
+   	 select *
+   	 from hy_temporary_bx 
+	 where  <![CDATA[ bx_date >= #{startdate}]]>
+	        <![CDATA[ and bx_date <= #{enddate}]]>
+	        group by org_id,user_id
+   </select>
+</mapper>

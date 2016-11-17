@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.Organization" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="VARCHAR" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="showindex" property="showindex" jdbcType="INTEGER" />
+    <result column="previous_id" property="previousId" jdbcType="VARCHAR" />
+    <result column="org_fullname" property="orgFullname" jdbcType="VARCHAR" />
+    <result column="haschildorg" property="haschildorg" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, creat_time, org_name, status, update_time, showindex, previous_id, org_fullname, 
+    haschildorg, company_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where id = #{id,jdbcType=VARCHAR}
+    and status !='9'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from organization
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.Organization" >
+    insert into organization (id, creat_time, org_name, 
+      status, update_time, showindex, 
+      previous_id, org_fullname, haschildorg, 
+      company_id)
+    values (#{id,jdbcType=VARCHAR}, #{creatTime,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{showindex,jdbcType=INTEGER}, 
+      #{previousId,jdbcType=VARCHAR}, #{orgFullname,jdbcType=VARCHAR}, #{haschildorg,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.Organization" >
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="showindex != null" >
+        showindex,
+      </if>
+      <if test="previousId != null" >
+        previous_id,
+      </if>
+      <if test="orgFullname != null" >
+        org_fullname,
+      </if>
+      <if test="haschildorg != null" >
+        haschildorg,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="showindex != null" >
+        #{showindex,jdbcType=INTEGER},
+      </if>
+      <if test="previousId != null" >
+        #{previousId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgFullname != null" >
+        #{orgFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="haschildorg != null" >
+        #{haschildorg,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.Organization" >
+    update organization
+    <set >
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="showindex != null" >
+        showindex = #{showindex,jdbcType=INTEGER},
+      </if>
+      <if test="previousId != null" >
+        previous_id = #{previousId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgFullname != null" >
+        org_fullname = #{orgFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="haschildorg != null" >
+        haschildorg = #{haschildorg,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.Organization" >
+    update organization
+    set creat_time = #{creatTime,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      showindex = #{showindex,jdbcType=INTEGER},
+      previous_id = #{previousId,jdbcType=VARCHAR},
+      org_fullname = #{orgFullname,jdbcType=VARCHAR},
+      haschildorg = #{haschildorg,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="selectAllDept" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where status &lt;&gt;9 or status is null
+    order by showindex
+  </select>
+  
+   <select id="getDeptByFullName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select *
+  	from organization
+  	where org_fullname = #{orgFullname,jdbcType=VARCHAR} and status &lt;&gt;9
+  </select>
+  
+  <select id="selectAllDeptByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where company_id = #{companyId} and status &lt;&gt;9 or status is null
+    order by showindex
+  </select>
+  
+  <!-- 通过上级ID 获取部门 -->
+  <select id="getOrgByPreId" resultMap="BaseResultMap" parameterType="java.util.List">
+  	select * from organization
+  	where status !='9' and 
+  		previous_id in 
+  		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach> 
+        
+  </select>
+  
+  <!-- 查询改集团下所有一级部门 -->
+    <select id="selectByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where company_id = #{companyId,jdbcType=VARCHAR} 
+    and (status &lt;&gt;9 or status is null )
+    and (previous_id is null or previous_id = '')
+    order by showindex
+  </select>
+  
+  <!--查询所有人员和部门信息-->
+      <select id="selectByCidandPreId" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.Organization" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where company_id = #{companyId} 
+    and (status &lt;&gt;9 or status is null) 
+    and previous_id = #{previousId}
+    order by showindex
+  </select>
+  
+    <!-- 查询改集团下所有一级部门 -->
+    <select id="selectByOrg" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where previous_id = #{org_id,jdbcType=VARCHAR} 
+    and (status &lt;&gt;9 or status is null )
+    order by showindex
+  </select>
+  
+  <!-- 查询所有子级部门 -->
+  <select id="findByParentId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+    <include refid="Base_Column_List" />
+    from organization
+    where previous_id = #{org_id,jdbcType=VARCHAR} 
+    and (status &lt;&gt;9 or status is null )
+    order by showindex
+  </select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.AdminRoleMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.AdminRole" >
+    <result column="admin_user_id" property="adminUserId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.AdminRole" >
+    insert into admin_role (admin_user_id, company_id, role_id
+      )
+    values (#{adminUserId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.AdminRole" >
+    insert into admin_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminUserId != null" >
+        admin_user_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminUserId != null" >
+        #{adminUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="selectRoleId" resultMap="BaseResultMap" parameterType="map">
+  select * from admin_role where company_id = #{companyId}
+  <if test="userId !=null">
+   and admin_user_id = #{userId}
+   </if> ;
+ 
+  </select>
+</mapper>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalDataMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalData" >
+    <id column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="draft_date" property="draftDate" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="is_definition" property="isDefinition" jdbcType="VARCHAR" />
+    <result column="third_id" property="thirdId" jdbcType="VARCHAR" />
+    <result column="default_start_users" property="defaultStartUsers" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cmcc.mobile.admin.entity.ApprovalData" extends="BaseResultMap" >
+    <result column="json_data" property="jsonData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    flow_id, draft_date, num, status, approval_table_config_id, user_id, is_definition, 
+    third_id, default_start_users, company_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    json_data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from approval_data
+    where flow_id = #{flowId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_data
+    where flow_id = #{flowId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalData" >
+    insert into approval_data (flow_id, draft_date, num, 
+      status, approval_table_config_id, user_id, 
+      is_definition, third_id, default_start_users, 
+      company_id, json_data)
+    values (#{flowId,jdbcType=VARCHAR}, #{draftDate,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{approvalTableConfigId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{isDefinition,jdbcType=VARCHAR}, #{thirdId,jdbcType=VARCHAR}, #{defaultStartUsers,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=VARCHAR}, #{jsonData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalData" >
+    insert into approval_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="draftDate != null" >
+        draft_date,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="isDefinition != null" >
+        is_definition,
+      </if>
+      <if test="thirdId != null" >
+        third_id,
+      </if>
+      <if test="defaultStartUsers != null" >
+        default_start_users,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="jsonData != null" >
+        json_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="draftDate != null" >
+        #{draftDate,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefinition != null" >
+        #{isDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultStartUsers != null" >
+        #{defaultStartUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonData != null" >
+        #{jsonData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalData" >
+    update approval_data
+    <set >
+      <if test="draftDate != null" >
+        draft_date = #{draftDate,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefinition != null" >
+        is_definition = #{isDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        third_id = #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultStartUsers != null" >
+        default_start_users = #{defaultStartUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonData != null" >
+        json_data = #{jsonData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where flow_id = #{flowId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cmcc.mobile.admin.entity.ApprovalData" >
+    update approval_data
+    set draft_date = #{draftDate,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      is_definition = #{isDefinition,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      default_start_users = #{defaultStartUsers,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      json_data = #{jsonData,jdbcType=LONGVARCHAR}
+    where flow_id = #{flowId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalData" >
+    update approval_data
+    set draft_date = #{draftDate,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      is_definition = #{isDefinition,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      default_start_users = #{defaultStartUsers,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR}
+    where flow_id = #{flowId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getInfoByApprovalTableConfigId" resultMap="ResultMapWithBLOBs">
+		select * 
+		from approval_data
+		where  
+		user_id = #{userId,jdbcType=VARCHAR}
+		and approval_table_config_id in   
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach> 
+		order by draft_date desc
+	</select>
+	
+	
+	<select id="selectByParams" resultMap="ResultMapWithBLOBs" parameterType="java.util.HashMap">
+	
+		select * from approval_data WHERE 1=1
+		
+		<if test="configId != null">
+			AND approval_table_config_id = #{configId,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="flowId != null">
+			AND flow_id = #{flowId,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="status != null">
+			AND `status` = #{status,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="startDate != null">
+			<![CDATA[ AND str_to_date(draft_date,'%Y-%m-%d ') >= #{startDate,jdbcType=VARCHAR}]]>
+		</if>
+		
+		<if test="endDate != null">
+			<![CDATA[ AND str_to_date(draft_date,'%Y-%m-%d ') <= #{endDate,jdbcType=VARCHAR}]]>
+		</if>
+		
+		<if test="companyId != null">
+			and company_id = #{companyId,jdbcType=VARCHAR}
+		</if>
+		
+	</select>
+    <select id="getReport" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select * from approval_data
+  
+    <if test="flowId !=null">
+     where  flow_id = #{flowId,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

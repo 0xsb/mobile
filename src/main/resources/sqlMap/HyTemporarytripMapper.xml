@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.HyTemporarytripMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.HyTemporarytrip" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="flow_id" property="flowId" jdbcType="VARCHAR" />
+    <result column="approval_table_config_id" property="approvalTableConfigId" jdbcType="VARCHAR" />
+    <result column="tripday" property="tripday" jdbcType="DECIMAL" />
+    <result column="startdate" property="startdate" jdbcType="VARCHAR" />
+    <result column="enddate" property="enddate" jdbcType="VARCHAR" />
+    <result column="triplocale" property="triplocale" jdbcType="VARCHAR" />
+    <result column="apple_date" property="appleDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, org_id, flow_id, approval_table_config_id, tripday, startdate, enddate, 
+    triplocale, apple_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hy_temporary_trip
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hy_temporary_trip
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.HyTemporarytrip" >
+    insert into hy_temporary_trip (id, user_id, org_id, 
+      flow_id, approval_table_config_id, tripday, 
+      startdate, enddate, triplocale, 
+      apple_date)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
+      #{flowId,jdbcType=VARCHAR}, #{approvalTableConfigId,jdbcType=VARCHAR}, #{tripday,jdbcType=DECIMAL}, 
+      #{startdate,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, #{triplocale,jdbcType=VARCHAR}, 
+      #{appleDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.HyTemporarytrip" >
+    insert into hy_temporary_trip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id,
+      </if>
+      <if test="tripday != null" >
+        tripday,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="enddate != null" >
+        enddate,
+      </if>
+      <if test="triplocale != null" >
+        triplocale,
+      </if>
+      <if test="appleDate != null" >
+        apple_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="tripday != null" >
+        #{tripday,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="triplocale != null" >
+        #{triplocale,jdbcType=VARCHAR},
+      </if>
+      <if test="appleDate != null" >
+        #{appleDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.HyTemporarytrip" >
+    update hy_temporary_trip
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTableConfigId != null" >
+        approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      </if>
+      <if test="tripday != null" >
+        tripday = #{tripday,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="triplocale != null" >
+        triplocale = #{triplocale,jdbcType=VARCHAR},
+      </if>
+      <if test="appleDate != null" >
+        apple_date = #{appleDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.HyTemporarytrip" >
+    update hy_temporary_trip
+    set user_id = #{userId,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      flow_id = #{flowId,jdbcType=VARCHAR},
+      approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+      tripday = #{tripday,jdbcType=DECIMAL},
+      startdate = #{startdate,jdbcType=VARCHAR},
+      enddate = #{enddate,jdbcType=VARCHAR},
+      triplocale = #{triplocale,jdbcType=VARCHAR},
+      apple_date = #{appleDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByDate" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select triplocale,sum(to_Days(DATE_FORMAT(enddate,'%Y-%m-%d'))-to_days(DATE_FORMAT(startdate,'%Y-%m-%d'))+1)  as tripday
+  	from hy_temporary_trip 
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate >= #{startdate}]]>
+	<![CDATA[ and  enddate <= #{enddate}]]>
+	group by triplocale
+  </select>
+  
+   <select id="selectByDate2" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select triplocale,sum(to_Days(DATE_FORMAT(#{enddate},'%Y-%m-%d'))-to_days(DATE_FORMAT(startdate,'%Y-%m-%d'))+1) as tripday
+  	from hy_temporary_trip 
+  	where org_id = #{orgid} 
+	<![CDATA[ and  startdate >= #{startdate}]]>
+	<![CDATA[ and  enddate >= #{enddate}]]>
+	<![CDATA[ and  startdate <= #{enddate}]]>
+	group by triplocale
+  </select>
+  
+  <select id="selectByDate3" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select triplocale,sum(to_Days(DATE_FORMAT(enddate,'%Y-%m-%d'))-to_days(DATE_FORMAT(#{startdate},'%Y-%m-%d'))+1) as tripday 
+  	from hy_temporary_trip 
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate <= #{startdate}]]>
+	<![CDATA[ and  enddate <= #{enddate}]]>
+	<![CDATA[ and  enddate >= #{startdate}]]>
+	group by triplocale
+  </select>
+  
+  <select id="selectByDate4" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select triplocale,sum(30) as tripday 
+  	from hy_temporary_trip 
+	where org_id = #{orgid} 
+	<![CDATA[ and  startdate <= #{startdate}]]>
+	<![CDATA[ and  enddate >= #{enddate}]]>
+	group by triplocale
+  </select>
+  
+  <delete id="deleteAll">
+  	delete from hy_temporary_trip
+  </delete>
+  
+ <select id="getNumByDate" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+   select user_id,triplocale 
+   from hy_temporary_trip 
+   where org_id = #{orgid} 
+   <![CDATA[ and  apple_date >= #{startdate}]]>
+   <![CDATA[ and  apple_date <= #{enddate}]]>
+   group by user_id,triplocale;
+  </select>
+  
+   <select id="getTripNumByOrg" parameterType="java.util.HashMap" resultMap="BaseResultMap"> 
+   	 select *
+   	 from hy_temporary_trip 
+	 where  <![CDATA[ apple_date >= #{startdate}]]>
+	        <![CDATA[ and apple_date <= #{enddate}]]>
+	        group by org_id,user_id
+   </select>
+  
+  
+</mapper>

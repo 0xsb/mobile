@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalRunManageMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalRunManage" >
+    <id column="run_id" property="runId" jdbcType="VARCHAR" />
+    <result column="arrive_date" property="arriveDate" jdbcType="VARCHAR" />
+    <result column="examine_date" property="examineDate" jdbcType="VARCHAR" />
+    <result column="file" property="file" jdbcType="VARCHAR" />
+    <result column="opinion" property="opinion" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="run_no" property="runNo" jdbcType="INTEGER" />
+    <result column="run_status" property="runStatus" jdbcType="VARCHAR" />
+    <result column="approval_data_id" property="approvalDataId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="third_id" property="thirdId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    run_id, arrive_date, examine_date, file, opinion, pic, run_no, run_status, approval_data_id, 
+    user_id, third_id, company_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_run_manage
+    where run_id = #{runId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_run_manage
+    where run_id = #{runId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" >
+    insert into approval_run_manage (run_id, arrive_date, examine_date, 
+      file, opinion, pic, 
+      run_no, run_status, approval_data_id, 
+      user_id, third_id, company_id
+      )
+    values (#{runId,jdbcType=VARCHAR}, #{arriveDate,jdbcType=VARCHAR}, #{examineDate,jdbcType=VARCHAR}, 
+      #{file,jdbcType=VARCHAR}, #{opinion,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{runNo,jdbcType=INTEGER}, #{runStatus,jdbcType=VARCHAR}, #{approvalDataId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{thirdId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" >
+    insert into approval_run_manage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="runId != null" >
+        run_id,
+      </if>
+      <if test="arriveDate != null" >
+        arrive_date,
+      </if>
+      <if test="examineDate != null" >
+        examine_date,
+      </if>
+      <if test="file != null" >
+        file,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="runNo != null" >
+        run_no,
+      </if>
+      <if test="runStatus != null" >
+        run_status,
+      </if>
+      <if test="approvalDataId != null" >
+        approval_data_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="thirdId != null" >
+        third_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="runId != null" >
+        #{runId,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveDate != null" >
+        #{arriveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="examineDate != null" >
+        #{examineDate,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="runNo != null" >
+        #{runNo,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDataId != null" >
+        #{approvalDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" >
+    update approval_run_manage
+    <set >
+      <if test="arriveDate != null" >
+        arrive_date = #{arriveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="examineDate != null" >
+        examine_date = #{examineDate,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        file = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="runNo != null" >
+        run_no = #{runNo,jdbcType=INTEGER},
+      </if>
+      <if test="runStatus != null" >
+        run_status = #{runStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDataId != null" >
+        approval_data_id = #{approvalDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null" >
+        third_id = #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where run_id = #{runId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" >
+    update approval_run_manage
+    set arrive_date = #{arriveDate,jdbcType=VARCHAR},
+      examine_date = #{examineDate,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      run_no = #{runNo,jdbcType=INTEGER},
+      run_status = #{runStatus,jdbcType=VARCHAR},
+      approval_data_id = #{approvalDataId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR}
+    where run_id = #{runId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 根据流程ID获取流程扭转数据 -->
+  <select id="getRunInfoByFlowId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	 select * from approval_run_manage where approval_data_id = #{flowId,jdbcType=VARCHAR}
+  	 order by run_no 
+  </select>
+  
+  <!--  -->
+  <select id="getRunInofByFlowId" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from approval_run_manage
+		where 
+		    approval_data_id = #{approvalDataId,jdbcType=VARCHAR} 
+			and run_status=#{runStatus,jdbcType=VARCHAR}
+		<if test="thirdId != null and thirdId != ''">
+			and third_id = #{thirdId,jdbcType=VARCHAR}
+		</if>
+		<if test="userId != null and userId != ''">
+			and user_id = #{userId,jdbcType=VARCHAR}
+		</if>	
+</select>
+
+
+
+<select id="getRunInofByFlowIdAndUserId" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from approval_run_manage
+		where approval_data_id = #{approvalDataId,jdbcType=VARCHAR} 
+		and run_status=#{runStatus,jdbcType=VARCHAR}
+		<if test="userId != null and userId != ''">
+		and user_id = #{userId,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="getRunInfoByRunNO" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from approval_run_manage
+		where approval_data_id = #{approvalDataId,jdbcType=VARCHAR} 
+		and run_no > #{runNo,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getRunNoByFlowId" parameterType="cmcc.mobile.admin.entity.ApprovalRunManage" resultType="java.lang.Integer">
+		select
+		max(run_no)
+		from approval_run_manage
+		where approval_data_id = #{approvalDataId,jdbcType=VARCHAR} 
+		and run_status != 5
+	</select>
+	
+	<select id="getAllInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * 
+		from approval_run_manage
+		where approval_data_id = #{id,jdbcType=VARCHAR}
+		order by run_no asc
+	</select>
+  
+</mapper>

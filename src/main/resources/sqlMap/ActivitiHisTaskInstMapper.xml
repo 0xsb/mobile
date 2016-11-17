@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmcc.mobile.admin.dao.ActivitiHisTaskInstMapper">
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ActivitiHisTaskInst">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="process_definition_id" jdbcType="VARCHAR" property="processDefinitionId" />
+    <result column="process_instance_id" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="execution_id" jdbcType="VARCHAR" property="executionId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="task_def_key" jdbcType="VARCHAR" property="taskDefKey" />
+    <result column="delete_reason" jdbcType="VARCHAR" property="deleteReason" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="duration" jdbcType="BIGINT" property="duration" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, process_definition_id, process_instance_id, execution_id, name, task_def_key, 
+    delete_reason, create_time, end_time, duration
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activiti_his_taskinst
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from activiti_his_taskinst
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ActivitiHisTaskInst">
+    insert into activiti_his_taskinst (id, process_definition_id, process_instance_id, 
+      execution_id, name, task_def_key, 
+      delete_reason, create_time, end_time, 
+      duration)
+    values (#{id,jdbcType=VARCHAR}, #{processDefinitionId,jdbcType=VARCHAR}, #{processInstanceId,jdbcType=VARCHAR}, 
+      #{executionId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{taskDefKey,jdbcType=VARCHAR}, 
+      #{deleteReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{duration,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ActivitiHisTaskInst">
+    insert into activiti_his_taskinst
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="processDefinitionId != null">
+        process_definition_id,
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id,
+      </if>
+      <if test="executionId != null">
+        execution_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="taskDefKey != null">
+        task_def_key,
+      </if>
+      <if test="deleteReason != null">
+        delete_reason,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="processDefinitionId != null">
+        #{processDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        #{executionId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDefKey != null">
+        #{taskDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteReason != null">
+        #{deleteReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ActivitiHisTaskInst">
+    update activiti_his_taskinst
+    <set>
+      <if test="processDefinitionId != null">
+        process_definition_id = #{processDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        execution_id = #{executionId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDefKey != null">
+        task_def_key = #{taskDefKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteReason != null">
+        delete_reason = #{deleteReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ActivitiHisTaskInst">
+    update activiti_his_taskinst
+    set process_definition_id = #{processDefinitionId,jdbcType=VARCHAR},
+      process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      execution_id = #{executionId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      task_def_key = #{taskDefKey,jdbcType=VARCHAR},
+      delete_reason = #{deleteReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      duration = #{duration,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

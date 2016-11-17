@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.TotalUserMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.TotalUser">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="v_id" property="vId" jdbcType="VARCHAR" />
+		<result column="database_name" property="databaseName"
+			jdbcType="VARCHAR" />
+		<result column="is_manager" property="isManager" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ResultMap" type="cmcc.mobile.admin.vo.CompanyVo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="v_id" property="vId" jdbcType="VARCHAR" />
+		<result column="database_name" property="databaseName"
+			jdbcType="VARCHAR" />
+		<result column="is_manager" property="isManager" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, v_id, database_name, is_manager, mobile, name, pid,
+		type, company_id,
+		createtime,
+		password, status, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from total_user
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		total_user
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.TotalUser">
+		insert into total_user (id,
+		v_id, database_name,
+		is_manager, mobile, name,
+		pid, type, company_id,
+		createtime, password, status,
+		create_time)
+		values
+		(#{id,jdbcType=VARCHAR}, #{vId,jdbcType=VARCHAR},
+		#{databaseName,jdbcType=VARCHAR},
+		#{isManager,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{pid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{companyId,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.TotalUser">
+		insert into total_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="vId != null">
+				v_id,
+			</if>
+			<if test="databaseName != null">
+				database_name,
+			</if>
+			<if test="isManager != null">
+				is_manager,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="vId != null">
+				#{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseName != null">
+				#{databaseName,jdbcType=VARCHAR},
+			</if>
+			<if test="isManager != null">
+				#{isManager,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.TotalUser">
+		update total_user
+		<set>
+			<if test="vId != null">
+				v_id = #{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseName != null">
+				database_name = #{databaseName,jdbcType=VARCHAR},
+			</if>
+			<if test="isManager != null">
+				is_manager = #{isManager,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.TotalUser">
+		update total_user
+		set v_id = #{vId,jdbcType=VARCHAR},
+		database_name =
+		#{databaseName,jdbcType=VARCHAR},
+		is_manager =
+		#{isManager,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
+		company_id = #{companyId,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getUserCompanys" parameterType="java.util.Map"
+		resultType="cmcc.mobile.admin.vo.UserCompanyVo">
+		select tu.id as userId,tu.company_id as companyId,tu.database_name as
+		databaseName,mc.customer_name as companyName
+		from total_user
+		tu,mt_customer mc
+		where tu.company_id = mc.id
+
+		<if test="mobile != null and mobile != ''">
+			and tu.mobile = #{mobile}
+			and (tu.status is null or
+			tu.status = '0')
+		</if>
+		<if test="userId != null and userId != ''">
+			and tu.id=#{userId}
+		</if>
+
+	</select>
+
+	<select id="selectByMobile" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from total_user
+		where mobile = #{mobile,jdbcType=VARCHAR}
+		and (status is
+		null or status = '0')
+	</select>
+
+	<select id="selectByMobilel" resultMap="ResultMap"
+		parameterType="java.lang.String">
+		select a.*,c.customer_name as companyName
+		from total_user
+		a left join
+		mt_customer c on a.company_id = c.id
+		where mobile =
+		#{mobile,jdbcType=VARCHAR}
+		and (a.status is
+		null or a.status =
+		'0')
+	</select>
+	<!-- 登录验证 -->
+	<select id="getByPassword" resultType="cmcc.mobile.admin.vo.UserCompanyVo"
+		parameterType="cmcc.mobile.admin.entity.TotalUser">
+		select u.id as userId,c.id as companyId,c.customer_name
+		as companyName,c.dbname as databaseName from total_user u,mt_customer
+		c where u.password
+		is not null and u.company_id = c.id and
+		u.mobile=#{mobile} and
+		u.password=md5(#{password}) and u.status='0' and
+		c.status='1'
+	</select>
+
+	<!-- 通过手机号更新 -->
+	<update id="updateByMobileSelective" parameterType="cmcc.mobile.admin.entity.TotalUser">
+		update total_user
+		<set>
+			<if test="vId != null">
+				v_id = #{vId,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseName != null">
+				database_name = #{databaseName,jdbcType=VARCHAR},
+			</if>
+			<if test="isManager != null">
+				is_manager = #{isManager,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = md5(#{password,jdbcType=VARCHAR}),
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where mobile = #{mobile,jdbcType=VARCHAR} and status='0'
+	</update>
+	<!-- 根据就的密码查询用户信息 -->
+	<select id="findByOldPass" parameterType="cmcc.mobile.admin.entity.TotalUser"
+		resultMap="ResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from total_user where mobile=#{mobile} and status='0' and
+		<choose>
+			<when test="password != null and password != ''">
+				password=md5(#{password})
+			</when>
+			<otherwise>
+				(password is null or password='')
+			</otherwise>
+		</choose>
+		limit 1
+	</select>
+</mapper>

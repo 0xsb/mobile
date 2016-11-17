@@ -1,0 +1,304 @@
+@charset "utf-8";
+.form-item {
+    background: white;
+    position: relative;
+    padding: 0.75rem;
+    .clearfix;
+    .itemborder;
+    .itemmargin;
+    label {
+        top: 0.75rem;
+        left: 0.75rem;
+        width: 6rem;
+        margin-right: 1rem;
+        word-break: break-all;
+        float: left;
+    }
+    input[type=text], textarea {
+        width: e("calc(100% - 7rem)");
+        vertical-align: middle;
+        display: inline-block;
+        vertical-align: middle;
+        height: 1.5rem;
+    }
+    textarea {
+        min-height: 4rem;
+    }
+    &.dddaterangefield,
+    &.linkageselectfield {
+        padding: 0;
+    }
+    &.textnote {
+        background: transparent;
+        border: none;
+        margin: 0;
+        color: @color-grey;
+        font-size: 0.875rem;
+    }
+    &.tablefield {
+        padding: 0;
+        border: none;
+        background: transparent;
+        .add-button {
+            padding: 0.75rem;
+            color: @color-blue;
+            text-align: center;;
+            background: white;
+            .itemborder;
+        }
+    }
+    &.approveselect {
+        .list > div {
+            margin: 0.75rem 0.75rem 0 0;
+            width: 3.875rem;
+            height: 3.25rem;
+        }
+        .trigger {
+            float: left;
+            color: @color-grey;
+            font-weight: normal;
+            text-align: center;
+            .iconfont {
+                font-size: 2rem;
+            }
+        }
+        .approver-item {
+            float: left;
+            text-align: center;
+            cursor: pointer;
+            .avatar:extend(.avatar-base) {
+                width: 2rem;
+                height: 2rem;
+                line-height: 2rem;
+                font-size: 0.75rem;
+            }
+            .name {
+                font-size: 0.75rem;
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+    &.ddselectfield,
+    &.ddmultiselectfield,
+    &.dddatefield,
+    .range-item {
+        input {
+            text-align: right;
+            padding-right: 2rem;
+        }
+        &:after {
+            content: '\e620';
+            position: absolute;
+            right: 0.5rem;
+            top: 1rem;
+            font-family: "iconfont";
+            font-size: 1rem;
+            height: 1.25rem;
+            line-height: 1.25rem;
+            color: @color-grey;
+        }
+    }
+    &.ddphotofield,
+    &.ddattachment {
+        a.trigger {
+            font-size: 1.25rem;
+            color: @color-grey;
+            float: right;
+            width: 50%;
+            text-align: right;
+        }
+    }
+    &.picturenote {
+        background: transparent;
+        border: none;
+        color: @color-grey;
+        font-size: 0.875rem;
+        .picture-box {
+            padding: .5rem;
+            text-align: center;
+        }
+    }
+    &.eventbutton {
+        background: transparent;
+        border: none;
+        margin: 0;
+        text-align: center;
+        & > a {
+            display: inline-block;
+            background: #40affc;
+            color: white;
+            padding: 0.5rem 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+    }
+    &.location {
+        a.button {
+            display: inline-block;
+            background: #40affc;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            &.disabled {
+                background-color: @color-grey;
+            }
+        }
+    }
+    &.userselect {
+        a.trigger {
+            font-size: 1.25rem;
+            color: @color-grey;
+            float: right;
+            width: 50%;
+            text-align: right;
+        }
+        .approver-item {
+            float: left;
+            text-align: center;
+            cursor: pointer;
+            margin: 0.75rem 0.75rem 0 0;
+            width: 3.875rem;
+            height: 3.25rem;
+            .avatar {
+                width: 2rem;
+                height: 2rem;
+                line-height: 2rem;
+                font-size: 0.75rem;
+                border-radius: 50%;
+                text-align: center;
+                color: white;
+                margin: auto;
+                font-weight: 100;
+            }
+            .name {
+                font-size: 0.75rem;
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+    .list {
+        .clearfix;
+        margin-top: 0.5rem;
+    }
+    .range-item {
+        position: relative;
+        padding: 0.75rem;
+        border-top: 1px solid @border-color;
+        &:first-of-type {
+            border-top: 0;
+        }
+    }
+
+    .img-box {
+        width: 4rem;
+        height: 4rem;
+        line-height: 4rem;
+        text-align: center;
+        margin: 0 0.5rem 0.5rem 0;
+        position: relative;
+        float: left;
+        background: @color-likeWhite;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+            vertical-align: middle;
+            background: white;
+        }
+        .box-remove {
+            color: red;
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            line-height: 1rem;
+        }
+    }
+    .attach-box {
+        position: relative;
+        width: 100%;
+        height: 2.5rem;
+        border-top: 1px solid #ddd;
+        float: left;
+        margin-top: 0.25rem;
+        .attach-icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            float: left;
+            text-align: center;
+            padding: 0.25rem;
+            color: @color-grey;
+            & > .iconfont {
+                font-size: 2rem;
+            }
+        }
+        .attach-name {
+            padding: 0 0.5rem;
+            width: e("calc(100% - 6rem)");
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            line-height: 2.5rem;
+            display: inline-block;
+        }
+        .box-remove {
+            color: red;
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+        }
+    }
+}
+.table-box {
+    .box-title {
+        border-top: 1px solid @border-color;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        color: @color-grey;
+        position: relative;
+        .remove {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.75rem;
+            color: @color-blue;
+        }
+    }
+    .form-item {
+        margin: 0;
+        border-bottom: 0;
+        &:first-of-type {
+            border-top: 0;
+        }
+    }
+}
+.compute-container {
+    .form-item {
+        margin: 0;
+        border-bottom: 0;
+        background: transparent;
+        color: @color-grey;
+        input {
+            background: transparent;
+        }
+    }
+}
+.submit {
+    display: block;
+    background: @bgcolor-blue;
+    color: white;
+    height: 2rem;
+    line-height: 2rem;
+    width: 80%;
+    margin: 2rem auto 1.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+}

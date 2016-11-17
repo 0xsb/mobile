@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.UserApprovalDefDataMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.UserApprovalDefData">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="approval_table_config_id" property="approvalTableConfigId"
+			jdbcType="VARCHAR" />
+		<result column="control_id" property="controlId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="cmcc.mobile.admin.entity.UserApprovalDefData"
+		extends="BaseResultMap">
+		<result column="json_data" property="jsonData" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, approval_table_config_id, control_id, mobile, company_id,
+		create_time, status
+	</sql>
+	<sql id="Blob_Column_List">
+		json_data
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from user_approval_def_data
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_approval_def_data
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		insert into user_approval_def_data (id, approval_table_config_id,
+		control_id,
+		mobile, company_id, create_time,
+		status, json_data)
+		values (#{id,jdbcType=INTEGER}, #{approvalTableConfigId,jdbcType=VARCHAR},
+		#{controlId,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{status,jdbcType=VARCHAR}, #{jsonData,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		insert into user_approval_def_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="approvalTableConfigId != null">
+				approval_table_config_id,
+			</if>
+			<if test="controlId != null">
+				control_id,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="companyId != null">
+				company_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="jsonData != null">
+				json_data,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="approvalTableConfigId != null">
+				#{approvalTableConfigId,jdbcType=VARCHAR},
+			</if>
+			<if test="controlId != null">
+				#{controlId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="jsonData != null">
+				#{jsonData,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		update user_approval_def_data
+		<set>
+			<if test="approvalTableConfigId != null">
+				approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+			</if>
+			<if test="controlId != null">
+				control_id = #{controlId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="companyId != null">
+				company_id = #{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="jsonData != null">
+				json_data = #{jsonData,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		update user_approval_def_data
+		set approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+		control_id = #{controlId,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		company_id = #{companyId,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=VARCHAR},
+		json_data = #{jsonData,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		update user_approval_def_data
+		set approval_table_config_id = #{approvalTableConfigId,jdbcType=VARCHAR},
+		control_id = #{controlId,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		company_id = #{companyId,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="findByconfigIdAndUser" resultMap="ResultMapWithBLOBs"
+		parameterType="cmcc.mobile.admin.entity.UserApprovalDefData">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from user_approval_def_data
+		where approval_table_config_id =
+		#{approvalTableConfigId,jdbcType=INTEGER}
+		and company_id = #{companyId}
+		and mobile = #{mobile}
+	</select>
+</mapper>

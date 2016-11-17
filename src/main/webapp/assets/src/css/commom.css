@@ -1,0 +1,394 @@
+@charset "utf-8";
+html {
+  height: 100%;
+}
+body {
+  background-color: #fff;
+  font-family: "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+  min-width: 1000px;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 76px;
+}
+.row-maintain {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row-maintain .col-maintain {
+  padding-left: 0;
+  padding-right: 0;
+}
+.panel-maintain {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  color: #555555;
+}
+.panel-maintain .panel-head {
+  font-size: 18px;
+}
+.table{
+  max-width: 100%;
+}
+.table-maintain {
+  border-color: #efefef;
+  margin-bottom: 0;
+}
+.table-maintain thead {
+  background-color: #efefef;
+}
+.table-maintain > thead > tr > th,
+.table-maintain > tbody > tr > td {
+  font-size: 12px;
+  border: 1px solid #efefef;
+  height: 54px;
+  padding: 12px;
+}
+.table-maintain > tbody > tr:nth-child(odd) {
+  background-color: #fff;
+}
+.table-maintain > tbody > tr:hover {
+  background-color: #e1edf6;
+}
+.table-maintain td.operation > div {
+  display: table-cell;
+  height: 28px;
+  line-height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 12px;
+}
+.table-maintain td.operation > div > a {
+  display: inline-block;
+  color: #3386c0;
+}
+.table-maintain td.operation > div > a:hover {
+  color: #52b97f;
+}
+.table-maintain td.operation > div > a:active {
+  color: #52b97f;
+}
+.table-maintain td.operation > div > a.two-letter {
+  width: 28px;
+}
+.table-maintain td.operation > div > a.four-letter {
+  width: 56px;
+}
+.table-maintain td.operation > div > a.do-delete {
+  color: #9b9b9b;
+}
+.table-maintain td.operation > div > a.do-delete:hover {
+  color: #555555;
+}
+.table-maintain td.operation > div > a.do-delete:active {
+  color: #555555;
+}
+.table-maintain td.operation > div > a.do-enable {
+  color: #52b97f;
+}
+.table-maintain td.operation > div > a.do-enable:hover {
+  color: #419465;
+}
+.table-maintain td.operation > div > a.do-enable:active {
+  color: #419465;
+}
+.table-maintain td.operation > div > a.do-disable {
+  color: #e7596b;
+}
+.table-maintain td.operation > div > a.do-disable:hover {
+  color: #b84755;
+}
+.table-maintain td.operation > div > a.do-disable:active {
+  color: #b84755;
+}
+.table-maintain td.status {
+  text-align: center;
+}
+.table-maintain td.status > span {
+  color: #fff;
+  border-radius: 3px;
+  width: 40px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  display: inline-block;
+}
+.table-maintain td.status > span.status-enable {
+  background-color: #52b97f;
+}
+.table-maintain td.status > span.status-disable {
+  background-color: #e7596b;
+}
+.form-maintain {
+  border: 1px solid #efefef;
+  background: #fff;
+  border-radius: 2px;
+  padding: 30px 10% 30px 0;
+}
+.form-maintain .form-group {
+  width: 400px;
+  margin: 10px auto;
+  position: relative;
+}
+.form-maintain .form-group > .control-label {
+  position: absolute;
+  right: 400px;
+  text-align: right;
+  padding-right: 10px;
+  width: 12em;
+  height: 32px;
+  line-height: 32px;
+  font-weight: normal;
+  font-size: 12px;
+}
+.form-maintain .form-group > .form-control {
+  height: 32px;
+  border-color: #efefef;
+  border-radius: 2px;
+  box-shadow: none;
+  font-size: 12px;
+}
+.form-maintain .form-group > .form-control.error-valid {
+  border-color: #e7596b;
+}
+.form-maintain .form-group > .checkbox {
+  height: 32px;
+  line-height: 32px;
+}
+.form-maintain .form-group.button-group {
+  margin-top: 50px;
+}
+.form-maintain .form-group.required::after {
+  content: "*";
+  position: absolute;
+  height: 32px;
+  padding: 8px 0 8px 5px;
+  color: #e7596b;
+  left: 400px;
+  top: 0;
+  font-size: 18px;
+}
+.form-maintain label.error-valid {
+  color: #e7596b;
+  position: absolute;
+  left: 400px;
+  top: 0;
+  width: 20em;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 15px;
+  font-weight: normal;
+  font-size: 12px;
+}
+.bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.bg-layer .row-maintain {
+  height: 100%;
+}
+.bg-layer .col-maintain {
+  height: 100%;
+}
+.bg-layer .bg-left {
+  background-color: #fff;
+}
+.bg-layer .bg-right {
+  background-color: #f8f8f8;
+}
+.text-require {
+  color: #e7596b;
+}
+.text-red {
+  color: #e7596b;
+}
+.text-green {
+  color: #52b97f;
+}
+.btn.btn-add {
+  background-color: #3386c0;
+  padding: 6px 12px 6px 44px;
+  border: none;
+  color: #fff;
+  position: relative;
+}
+.btn.btn-add::before {
+  content: "+";
+  border-right: 1px solid #fff;
+  color: #fff;
+  font-size: 18px;
+  line-height: 32px;
+  height: 32px;
+  width: 32px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.btn.btn-add:hover {
+  background-color: #286b99;
+}
+.btn.btn-submit {
+  background-color: #3386c0;
+  color: #fff;
+  width: 129px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 2px;
+  border: none;
+  padding: 0;
+}
+.btn.btn-submit:hover {
+  background-color: #286b99;
+}
+.btn.btn-cancle {
+  background-color: #e6e6e6;
+  color: #9b9b9b;
+  width: 129px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 2px;
+  border: none;
+  padding: 0;
+}
+.btn.btn-cancle:hover {
+  background-color: #b8b8b8;
+}
+.navbar-maintain {
+  height: 76px;
+  background: #3386c0;
+  color: #fff;
+  padding: 0 20px;
+  margin-bottom: 0;
+}
+.navbar-maintain .logo {
+  line-height: 76px;
+}
+.navbar-maintain .logo > img {
+  height: 32px;
+}
+.navbar-maintain .separate {
+  height: 30px;
+  width: 1px;
+  margin: 23px 19px;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.navbar-maintain .title {
+  font-size: 20px;
+  line-height: 76px;
+  letter-spacing: 1px;
+}
+.navbar-maintain .user {
+  height: 76px;
+  padding: 16px 0;
+  line-height: 22px;
+  font-weight: 100;
+}
+.navbar-maintain .user a {
+  color: #efefef;
+}
+.footer {
+  width: 100%;
+  height: 76px;
+  line-height: 76px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  background-color: #4a5c6e;
+}
+.footer .copyright {
+  color: #fff;
+  font-size: 13px;
+}
+.content {
+  width: 100%;
+}
+.content .table > thead > tr > th,
+.content .table > tbody > tr > td {
+  vertical-align: middle;
+}
+.content .search-form {
+  line-height: 34px;
+}
+.content .search-form input[type=text] {
+  width: 125px;
+  height: 34px;
+  margin: auto 10px;
+  padding: 0 5px;
+  border: 1px solid #efefef;
+}
+.content .pageinfo {
+  line-height: 34px;
+}
+.content .page-box {
+  text-align: center;
+}
+.content .pagination {
+  margin: 0;
+  display: inline-block;
+}
+.content .pagination li.disabled > a {
+  color: #9b9b9b;
+}
+.content .menu-maintain {
+  padding-top: 40px;
+  font-size: 15px;
+}
+.content .menu-maintain .panel-heading {
+  padding: 10px 15px 10px 45px;
+}
+.content .menu-maintain a.list-group-item {
+  position: relative;
+  color: #9b9b9b;
+  padding: 10px 15px 10px 66px;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: 45px center;
+}
+.content .menu-maintain a.list-group-item:hover {
+  background-color: #f8f8f8;
+}
+.content .menu-maintain a.list-group-item.active {
+  color: #3386c0;
+  background-color: #f8f8f8;
+  border: none;
+}
+.content .menu-maintain a.list-group-item.active::before {
+  content: " ";
+  width: 4px;
+  height: 40px;
+  background-color: #3386c0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.content .menu-maintain a.list-group-item.enterprise {
+  background-image: url(svg/enterprise.svg);
+}
+.content .menu-maintain a.list-group-item.enterprise.active {
+  background-image: url(svg/enterprise-active.svg);
+}
+.content .menu-maintain a.list-group-item.user {
+  background-image: url(svg/user.svg);
+}
+.content .menu-maintain a.list-group-item.user.active {
+  background-image: url(svg/user-active.svg);
+}
+.content .panel-maintain-content .panel-heading {
+  padding: 30px 20px 10px;
+  font-size: 18px;
+}
+.content .panel-maintain-content .panel-body {
+  padding: 10px 20px;
+}
+.content .panel-maintain-content .panel-footer {
+  padding: 0 20px;
+  background-color: transparent;
+  border: none;
+}

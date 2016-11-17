@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ActivitiRoleGroupMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="roleId" property="roleId" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="createTime" property="createTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMap" type="cmcc.mobile.admin.entity.User">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="v_id" property="vId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="work_number" property="workNumber" jdbcType="VARCHAR" />
+		<result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+		<result column="head_img" property="headImg" jdbcType="VARCHAR" />
+		<result column="post" property="post" jdbcType="VARCHAR" />
+		<result column="org_id" property="orgId" jdbcType="VARCHAR" />
+		<result column="re_name" property="reName" jdbcType="VARCHAR" />
+		<result column="vwt_no" property="vwtNo" jdbcType="VARCHAR" />
+		<result column="creat_time" property="creatTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="showindex" property="showindex" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMaps" type="cmcc.mobile.admin.vo.UserVo">
+		<id column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="roleId" property="roleId" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="Results" type="cmcc.mobile.admin.vo.ActivitiUserVo">
+		<id column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="org_id" property="orgId" jdbcType="VARCHAR" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, roleId, userId, status, createTime
+	</sql>
+	<select id="selectByPrimaryKey" resultType="java.lang.Integer"
+		parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		select count(*) from activiti_rolegroup where roleId =
+		#{roleId,jdbcType=BIGINT} and userId = #{userId,jdbcType=VARCHAR} and
+		status !=0
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		activiti_rolegroup where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		insert into activiti_rolegroup
+		(id, roleId, userId,
+		status, createTime)
+		values (#{id,jdbcType=BIGINT},
+		#{roleId,jdbcType=INTEGER},
+		#{userId,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		insert into activiti_rolegroup
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="roleId != null">
+				roleId,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		update activiti_rolegroup
+		<set>
+			<if test="roleId != null">
+				roleId = #{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		update
+		activiti_rolegroup
+		set roleId = #{roleId,jdbcType=INTEGER},
+		userId =
+		#{userId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		createTime = #{createTime,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+	<update id="deleteRolePerson" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		update
+		activiti_rolegroup
+		set status = 0 where roleId =
+		#{roleId,jdbcType=BIGINT} and userId =
+		#{userId}
+	</update>
+
+	<select id="selectByRoleId" resultMap="BaseResultMap"
+		parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		select * from activiti_rolegroup where status !=0
+		<if test="id !=null">
+			and roleId = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="userId !=null">
+			and userId = #{userId}
+		</if>
+
+	</select>
+	<!-- 查询角色/群组下所有成员 -->
+	<select id="selectByrolePersonList" parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup"
+		resultMap="ResultMaps">
+		select u.user_name as userName ,u.id as
+		userId,u.mobile,a.roleId from
+		activiti_rolegroup a
+		LEFT
+		JOIN
+		user u on
+		a.userId = u.id
+		where u.status !='9' and a.roleId = #{id}
+		and a.status
+		!=0
+
+	</select>
+	<!-- 批量新增角色和群组成员，用map接受参数通过foreach标签实现批量插入 -->
+	<insert id="addGroup" parameterType="map">
+		insert into activiti_rolegroup(roleId,status,createTime, userId)
+		values
+		<foreach collection="userId" index="index" item="item"
+			separator=",">
+			( #{roleId},#{status},#{createTime}, #{item} )
+		</foreach>
+	</insert>
+	<!-- 批量查重 -->
+	<select id="selectByPersons" parameterType="map" resultType="java.lang.Integer">
+		select count(1) from activiti_rolegroup a where a.userId in
+		<foreach collection="userId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		and a.status !=0 and roleId = #{roleId}
+	</select>
+
+	<select id="selectById" resultMap="BaseResultMap"
+		parameterType="cmcc.mobile.admin.entity.ActivitiRoleGroup">
+		select * from activiti_rolegroup where status !=0
+		<if test="id !=null">
+			and roleId = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="userId !=null">
+			and userId = #{userId}
+		</if>
+	</select>
+	<!-- 查询用户 -->
+	<select id="selectByUser" resultMap="ResultMap" parameterType="map">
+		select * from user a where a.id in
+		<foreach collection="userId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		and a.status !=9
+	</select>
+
+	<!-- 查询群组成员 -->
+	<select id="selectByUserId" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName,a.roleId
+		from activiti_rolegroup a
+		left join
+		user u on
+		a.userId = u.id
+		left join
+		organization o on u.org_id=o.id
+		where a.roleId
+		in
+		<foreach collection="roleId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+		<if test="userId !=null">
+			and a.userId=#{userId}
+		</if>
+		and a.status !='0'
+	</select>
+
+	<!-- 查询人员信息 -->
+	<select id="selectByUserOrg" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name as orgName,o.org_fullname as fullName
+		
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		where
+		u.id in
+		<foreach collection="userId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		and u.status !='9'
+	</select>
+	<!-- 按组织查询人员信息 -->
+	<select id="selectByUserName" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName,a.roleId
+		from activiti_rolegroup a
+		left join
+		user u on
+		a.userId = u.id
+		left join
+		organization o on u.org_id=o.id
+		where a.roleId
+		in
+		<foreach collection="roleId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+		<if test="orgId !=null">
+			and o.id = #{orgId} and u.status !='9'
+		</if>
+
+	</select>
+	<!-- 按组织查询人员信息 -->
+	<select id="selectByUserIds" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName,a.roleId
+		from activiti_rolegroup a
+		left join
+		user u on a.userId = u.id
+		left join
+		organization o on u.org_id=o.id
+		where a.roleId in
+		<foreach collection="roleId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+		<if test="orgId !=null">
+			and o.id = #{orgId}
+		</if>
+		and u.status!=9
+	</select>
+
+	<select id="selectByUserIdParents" resultMap="Results"
+		parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName,a.roleId
+		from activiti_rolegroup a
+		left join
+		user u on
+		a.userId = u.id
+		left join
+		organization o on u.org_id=o.id
+		where a.roleId
+		in
+		<foreach collection="roleId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+		<if test="orgId !=null">
+			and o.previous_id = #{orgId}
+		</if>
+		<if test="parentId !=null">
+			and o.previous_id = #{parentId}
+		</if>
+		and u.status !='9'
+	</select>
+
+	<select id="selectByUserOrgs" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		where
+		u.id in
+		<foreach collection="userId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+		and o.id = #{orgId} and u.status!='9'
+	</select>
+
+	<select id="selectByUID" resultMap="Results" parameterType="java.lang.String">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		where
+		u.id = #{uId} and u.status !='9'
+	</select>
+
+	<select id="selectByUsers" parameterType="map" resultMap="BaseResultMap">
+		select * from activiti_rolegroup a where roleId in
+		<foreach collection="roleId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+
+	</select>
+	
+		<select id="selectByListUser" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name as orgName,o.org_fullname as fullName
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		left join activiti_rolegroup a on a.userId = u.id
+		where
+		a.roleId in
+		<foreach collection="roleId" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	 and u.status!='9'
+	</select>
+	
+		<!-- 查询人员信息 -->
+	<select id="selectByUserUserId" resultMap="Results" parameterType="map">
+		select u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		where
+		u.id in userId
+		and u.status !='9'
+	</select>
+	
+	<!-- 查询角色下关联组织的人员信息 -->
+	<select id="selectUserByOrg" resultMap="Results" parameterType="java.lang.String">
+		 u.id as userId,u.user_name as userName,o.id as orgId,o.org_name
+		as orgName
+		from user u
+		left join
+		organization o on u.org_id=o.id
+		where
+		o.id = #{text2}
+		and u.status !='9'
+	</select>
+</mapper>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalBatchTaskMapper">
+	 <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalBatchTask" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="initdt_users" property="initdtUsers" jdbcType="INTEGER" />
+    <result column="tocreatetask_users" property="tocreatetaskUsers" jdbcType="INTEGER" />
+    <result column="createdtask_users" property="createdtaskUsers" jdbcType="INTEGER" />
+    <result column="donetask_users" property="donetaskUsers" jdbcType="INTEGER" />
+    <result column="completetask_users" property="completetaskUsers" jdbcType="INTEGER" />
+    <result column="undotask_users" property="undotaskUsers" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="todo1" property="todo1" jdbcType="VARCHAR" />
+    <result column="todo2" property="todo2" jdbcType="VARCHAR" />
+    <result column="approval_type_id" property="approvalTypeId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="start_user_id" property="startUserId" jdbcType="VARCHAR" />
+    <result column="revoke_time" property="revokeTime" jdbcType="TIMESTAMP" />
+    <result column="cancel_time" property="cancelTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, task_name, create_user_id, create_time, initdt_users, tocreatetask_users, createdtask_users, 
+    donetask_users, completetask_users, undotask_users, status, todo1, todo2, approval_type_id, 
+    company_id, start_time, start_user_id, revoke_time, cancel_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_batch_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from approval_batch_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalBatchTask" >
+    insert into approval_batch_task (id, task_name, create_user_id, 
+      create_time, initdt_users, tocreatetask_users, 
+      createdtask_users, donetask_users, completetask_users, 
+      undotask_users, status, todo1, 
+      todo2, approval_type_id, company_id, 
+      start_time, start_user_id, revoke_time, 
+      cancel_time)
+    values (#{id,jdbcType=BIGINT}, #{taskName,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{initdtUsers,jdbcType=INTEGER}, #{tocreatetaskUsers,jdbcType=INTEGER}, 
+      #{createdtaskUsers,jdbcType=INTEGER}, #{donetaskUsers,jdbcType=INTEGER}, #{completetaskUsers,jdbcType=INTEGER}, 
+      #{undotaskUsers,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{todo1,jdbcType=VARCHAR}, 
+      #{todo2,jdbcType=VARCHAR}, #{approvalTypeId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{startUserId,jdbcType=VARCHAR}, #{revokeTime,jdbcType=TIMESTAMP}, 
+      #{cancelTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalBatchTask" >
+    insert into approval_batch_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="initdtUsers != null" >
+        initdt_users,
+      </if>
+      <if test="tocreatetaskUsers != null" >
+        tocreatetask_users,
+      </if>
+      <if test="createdtaskUsers != null" >
+        createdtask_users,
+      </if>
+      <if test="donetaskUsers != null" >
+        donetask_users,
+      </if>
+      <if test="completetaskUsers != null" >
+        completetask_users,
+      </if>
+      <if test="undotaskUsers != null" >
+        undotask_users,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="todo1 != null" >
+        todo1,
+      </if>
+      <if test="todo2 != null" >
+        todo2,
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="startUserId != null" >
+        start_user_id,
+      </if>
+      <if test="revokeTime != null" >
+        revoke_time,
+      </if>
+      <if test="cancelTime != null" >
+        cancel_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initdtUsers != null" >
+        #{initdtUsers,jdbcType=INTEGER},
+      </if>
+      <if test="tocreatetaskUsers != null" >
+        #{tocreatetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="createdtaskUsers != null" >
+        #{createdtaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="donetaskUsers != null" >
+        #{donetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="completetaskUsers != null" >
+        #{completetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="undotaskUsers != null" >
+        #{undotaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="todo1 != null" >
+        #{todo1,jdbcType=VARCHAR},
+      </if>
+      <if test="todo2 != null" >
+        #{todo2,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startUserId != null" >
+        #{startUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="revokeTime != null" >
+        #{revokeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalBatchTask" >
+    update approval_batch_task
+    <set >
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initdtUsers != null" >
+        initdt_users = #{initdtUsers,jdbcType=INTEGER},
+      </if>
+      <if test="tocreatetaskUsers != null" >
+        tocreatetask_users = #{tocreatetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="createdtaskUsers != null" >
+        createdtask_users = #{createdtaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="donetaskUsers != null" >
+        donetask_users = #{donetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="completetaskUsers != null" >
+        completetask_users = #{completetaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="undotaskUsers != null" >
+        undotask_users = #{undotaskUsers,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="todo1 != null" >
+        todo1 = #{todo1,jdbcType=VARCHAR},
+      </if>
+      <if test="todo2 != null" >
+        todo2 = #{todo2,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startUserId != null" >
+        start_user_id = #{startUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="revokeTime != null" >
+        revoke_time = #{revokeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null" >
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalBatchTask" >
+    update approval_batch_task
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      initdt_users = #{initdtUsers,jdbcType=INTEGER},
+      tocreatetask_users = #{tocreatetaskUsers,jdbcType=INTEGER},
+      createdtask_users = #{createdtaskUsers,jdbcType=INTEGER},
+      donetask_users = #{donetaskUsers,jdbcType=INTEGER},
+      completetask_users = #{completetaskUsers,jdbcType=INTEGER},
+      undotask_users = #{undotaskUsers,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      todo1 = #{todo1,jdbcType=VARCHAR},
+      todo2 = #{todo2,jdbcType=VARCHAR},
+      approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      start_user_id = #{startUserId,jdbcType=VARCHAR},
+      revoke_time = #{revokeTime,jdbcType=TIMESTAMP},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

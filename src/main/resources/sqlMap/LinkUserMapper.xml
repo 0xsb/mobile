@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.LinkUserMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.LinkUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="resources_id" property="resourcesId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, resources_id, create_time, update_time, flag
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from link_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 多条查询结果 -->
+  <select id="selectList" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from link_user
+    <where>
+       <if test="id !=null and id !=''">
+         id = #{id,jdbcType=BIGINT}
+       </if>
+       <if test="userId !=null and userId !=''">
+         and user_id = #{userId,jdbcType=VARCHAR}
+       </if>
+       <if test="resourcesId !=null and resourcesId !=''">
+         and resources_id = #{resourcesId,jdbcType=BIGINT}
+       </if>
+       <if test="createTime !=null and createTime != ''">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+       </if>
+       <if test="updateTime !=null and userId !=''">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+       </if>
+       <if test="flag !=null and flag !=''">
+         and flag = #{flag,jdbcType=INTEGER}
+       </if>
+     </where>
+     order by update_time desc
+  </select>
+  
+  <!-- 单条查询结果 -->
+  <select id="selectSingle" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from link_user
+     <where>
+       <if test="id !=null and id !=''">
+         id = #{id,jdbcType=BIGINT}
+       </if>
+       <if test="userId !=null and userId !=''">
+         and user_id = #{userId,jdbcType=VARCHAR}
+       </if>
+       <if test="resourcesId !=null and resourcesId !=''">
+         and resources_id = #{resourcesId,jdbcType=BIGINT}
+       </if>
+       <if test="createTime !=null and createTime !=''">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+       </if>
+       <if test="updateTime !=null and userId != ''">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+       </if>
+       <if test="flag !=null and flag !=''">
+         and flag = #{flag,jdbcType=INTEGER}
+       </if>
+     </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from link_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    insert into link_user (id, user_id, resources_id, 
+      create_time, update_time, flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{resourcesId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    insert into link_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="resourcesId != null" >
+        resources_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesId != null" >
+        #{resourcesId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    update link_user
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesId != null" >
+        resources_id = #{resourcesId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.LinkUser" >
+    update link_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      resources_id = #{resourcesId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

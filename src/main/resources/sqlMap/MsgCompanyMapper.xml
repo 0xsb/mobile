@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.MsgCompanyMapper" >
+ <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.MsgCompany" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 根据公司Id获取信息   0 禁用  1 启用   短信-->
+  <select id="getMsgCompanyByCompanyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from
+  	msg_company
+  	where company_id =#{companyId,jdbcType=VARCHAR} and status = '1'
+  </select>
+	
+</mapper>

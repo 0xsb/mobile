@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmcc.mobile.admin.dao.ActivitiHisSequenceFlowMapper">
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ActivitiHisSequenceFlow">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="act_id" jdbcType="VARCHAR" property="actId" />
+    <result column="process_definition_id" jdbcType="VARCHAR" property="processDefinitionId" />
+    <result column="process_instance_id" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="execution_id" jdbcType="VARCHAR" property="executionId" />
+    <result column="source_id" jdbcType="VARCHAR" property="sourceId" />
+    <result column="source_name" jdbcType="VARCHAR" property="sourceName" />
+    <result column="source_type" jdbcType="VARCHAR" property="sourceType" />
+    <result column="target_id" jdbcType="VARCHAR" property="targetId" />
+    <result column="target_name" jdbcType="VARCHAR" property="targetName" />
+    <result column="target_type" jdbcType="VARCHAR" property="targetType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, act_id, process_definition_id, process_instance_id, execution_id, source_id, 
+    source_name, source_type, target_id, target_name, target_type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activiti_his_sequence_flow
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from activiti_his_sequence_flow
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ActivitiHisSequenceFlow">
+    insert into activiti_his_sequence_flow (id, act_id, process_definition_id, 
+      process_instance_id, execution_id, source_id, 
+      source_name, source_type, target_id, 
+      target_name, target_type, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{actId,jdbcType=VARCHAR}, #{processDefinitionId,jdbcType=VARCHAR}, 
+      #{processInstanceId,jdbcType=VARCHAR}, #{executionId,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR}, 
+      #{sourceName,jdbcType=VARCHAR}, #{sourceType,jdbcType=VARCHAR}, #{targetId,jdbcType=VARCHAR}, 
+      #{targetName,jdbcType=VARCHAR}, #{targetType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ActivitiHisSequenceFlow">
+    insert into activiti_his_sequence_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="actId != null">
+        act_id,
+      </if>
+      <if test="processDefinitionId != null">
+        process_definition_id,
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id,
+      </if>
+      <if test="executionId != null">
+        execution_id,
+      </if>
+      <if test="sourceId != null">
+        source_id,
+      </if>
+      <if test="sourceName != null">
+        source_name,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="targetId != null">
+        target_id,
+      </if>
+      <if test="targetName != null">
+        target_name,
+      </if>
+      <if test="targetType != null">
+        target_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="processDefinitionId != null">
+        #{processDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        #{executionId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceName != null">
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null">
+        #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetName != null">
+        #{targetName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetType != null">
+        #{targetType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ActivitiHisSequenceFlow">
+    update activiti_his_sequence_flow
+    <set>
+      <if test="actId != null">
+        act_id = #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="processDefinitionId != null">
+        process_definition_id = #{processDefinitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="executionId != null">
+        execution_id = #{executionId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null">
+        source_id = #{sourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceName != null">
+        source_name = #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        source_type = #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null">
+        target_id = #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetName != null">
+        target_name = #{targetName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetType != null">
+        target_type = #{targetType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ActivitiHisSequenceFlow">
+    update activiti_his_sequence_flow
+    set act_id = #{actId,jdbcType=VARCHAR},
+      process_definition_id = #{processDefinitionId,jdbcType=VARCHAR},
+      process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      execution_id = #{executionId,jdbcType=VARCHAR},
+      source_id = #{sourceId,jdbcType=VARCHAR},
+      source_name = #{sourceName,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=VARCHAR},
+      target_id = #{targetId,jdbcType=VARCHAR},
+      target_name = #{targetName,jdbcType=VARCHAR},
+      target_type = #{targetType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

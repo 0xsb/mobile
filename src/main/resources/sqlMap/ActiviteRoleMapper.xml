@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ActivitiRoleMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ActivitiRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+    <result column="companyId" property="companyId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+    <result column="is_virtual" property="isVirtual" jdbcType="VARCHAR" />
+    <result column="text2" property="text2" jdbcType="VARCHAR" />
+    <result column="text3" property="text3" jdbcType="VARCHAR" />
+  </resultMap>
+	<resultMap id="ResultMap" type="cmcc.mobile.admin.entity.User">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="v_id" property="vId" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="work_number" property="workNumber" jdbcType="VARCHAR" />
+		<result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+		<result column="head_img" property="headImg" jdbcType="VARCHAR" />
+		<result column="post" property="post" jdbcType="VARCHAR" />
+		<result column="org_id" property="orgId" jdbcType="VARCHAR" />
+		<result column="re_name" property="reName" jdbcType="VARCHAR" />
+		<result column="vwt_no" property="vwtNo" jdbcType="VARCHAR" />
+		<result column="creat_time" property="creatTime" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+		<result column="showindex" property="showindex" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="ResultMaps" type="cmcc.mobile.admin.entity.Organization">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="previous_id" property="previousId" jdbcType="VARCHAR" />
+		<result column="org_fullname" property="orgFullname" jdbcType="VARCHAR" />
+		<result column="company_id" property="companyId" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    id, roleName, companyId, type, parent_id, status, createTime, is_virtual, text2, text3
+  </sql>
+
+
+  <!-- 查询角色是否已经存在 -->
+    <select id="selectCount" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.ActivitiRole" >
+    select * from activiti_role where roleName = #{roleName,jdbcType=VARCHAR} and status !=0 and companyId = #{companyId} and type = #{type}
+  </select>
+  <select id="selectByList" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.ActivitiRole" >
+    select * from activiti_role where status !=0 
+    <if test="type !=null">
+    and type = #{type} 
+    </if>
+    <if test="companyId !=null">
+    and companyId = #{companyId}
+    </if>
+    <if test="roleName !=null">
+    and roleName = #{roleName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+   <select id="selectByListId" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.ActivitiRole" >
+    select * from activiti_role where status !=0 
+    <if test="type !=null">
+    and type = #{type} 
+    </if>
+    <if test="companyId !=null">
+    and companyId = #{companyId}
+    </if>
+    <if test="roleName !=null">
+    and roleName = #{roleName,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <!-- 查询集团下所有用户 -->
+  <select id="selectUserByCompanyId" parameterType="java.lang.String" resultMap="ResultMap">
+		select * from user where company_id = #{companyId,jdbcType=VARCHAR} and
+		status != '9'
+</select>
+	
+<!-- 查询集团下所有部门 -->
+  <select id="selectCompanyInfoByCompanyId" parameterType="java.lang.String" resultMap="ResultMaps">
+  select * from organization where company_id = #{companyId,jdbcType=VARCHAR} and status !='9'
+</select>
+<!-- 根据用户ID查组织架构 -->
+  <select id="selectByOrg" parameterType="java.lang.String" resultMap="ResultMaps">
+  select u.org_name as orgName,u.org_fullname as orgFullname,u.id,u.company_id,u.previous_id  from 
+  organization u
+  LEFT
+  JOIN
+  user c on c.org_id = u.id where c.id = #{userId} and u.status = '1' 
+</select>
+  <select id="selectByRoles" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select * from activiti_role where status !=0 and id = #{roleId,jdbcType=BIGINT}
+  </select>
+  
+    <select id="selectCompany" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from activiti_role where companyId = #{companyId,jdbcType=VARCHAR} and
+		status != '9'
+</select>
+
+  <!-- 查询授权的角色 -->
+    <select id="selectByMap" resultMap="BaseResultMap" parameterType="map" >
+    select * from activiti_role where id in 
+    <foreach collection="roleId" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+  </select>
+  
+  <!-- 查询集团下所有部门 -->
+  <select id="selectCompanyId" parameterType="java.lang.String" resultMap="ResultMaps">
+  select * from organization where company_id = #{companyId,jdbcType=VARCHAR} and status !='9'
+</select>
+
+<!-- 查询角色信息-->
+    <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from activiti_role where id = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

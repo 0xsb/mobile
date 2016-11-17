@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.Customer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="contact_address" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="contact_fax" property="contactFax" jdbcType="VARCHAR" />
+    <result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="descn" property="descn" jdbcType="VARCHAR" />
+    <result column="enable" property="enable" jdbcType="VARCHAR" />
+    <result column="register_date" property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="ws_ip" property="wsIp" jdbcType="VARCHAR" />
+    <result column="ws_port" property="wsPort" jdbcType="VARCHAR" />
+    <result column="service_id" property="serviceId" jdbcType="BIGINT" />
+    <result column="promoter_id" property="promoterId" jdbcType="BIGINT" />
+    <result column="party_id" property="partyId" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="contact_user_name" property="contactUserName" jdbcType="VARCHAR" />
+    <result column="customermanagername" property="customermanagername" jdbcType="VARCHAR" />
+    <result column="customermanagermobile" property="customermanagermobile" jdbcType="VARCHAR" />
+    <result column="businesshall" property="businesshall" jdbcType="VARCHAR" />
+    <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+    <result column="excutetime" property="excutetime" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="ecode" property="ecode" jdbcType="VARCHAR" />
+    <result column="dbname" property="dbname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, contact_address, contact_email, contact_fax, contact_mobile, contact_name, contact_phone, 
+    customer_name, descn, enable, register_date, ws_ip, ws_port, service_id, promoter_id, 
+    party_id, dept_id, user_id, contact_user_name, customermanagername, customermanagermobile, 
+    businesshall, endtime, excutetime, starttime, status, ecode, dbname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mt_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mt_customer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.Customer" >
+    insert into mt_customer (id, contact_address, contact_email, 
+      contact_fax, contact_mobile, contact_name, 
+      contact_phone, customer_name, descn, 
+      enable, register_date, ws_ip, 
+      ws_port, service_id, promoter_id, 
+      party_id, dept_id, user_id, 
+      contact_user_name, customermanagername, customermanagermobile, 
+      businesshall, endtime, excutetime, 
+      starttime, status, ecode, 
+      dbname)
+    values (#{id,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{contactFax,jdbcType=VARCHAR}, #{contactMobile,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{descn,jdbcType=VARCHAR}, 
+      #{enable,jdbcType=VARCHAR}, #{registerDate,jdbcType=TIMESTAMP}, #{wsIp,jdbcType=VARCHAR}, 
+      #{wsPort,jdbcType=VARCHAR}, #{serviceId,jdbcType=BIGINT}, #{promoterId,jdbcType=BIGINT}, 
+      #{partyId,jdbcType=VARCHAR}, #{deptId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{contactUserName,jdbcType=VARCHAR}, #{customermanagername,jdbcType=VARCHAR}, #{customermanagermobile,jdbcType=VARCHAR}, 
+      #{businesshall,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, #{excutetime,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{ecode,jdbcType=VARCHAR}, 
+      #{dbname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.Customer" >
+    insert into mt_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contactAddress != null" >
+        contact_address,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="contactFax != null" >
+        contact_fax,
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="descn != null" >
+        descn,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="wsIp != null" >
+        ws_ip,
+      </if>
+      <if test="wsPort != null" >
+        ws_port,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="promoterId != null" >
+        promoter_id,
+      </if>
+      <if test="partyId != null" >
+        party_id,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="contactUserName != null" >
+        contact_user_name,
+      </if>
+      <if test="customermanagername != null" >
+        customermanagername,
+      </if>
+      <if test="customermanagermobile != null" >
+        customermanagermobile,
+      </if>
+      <if test="businesshall != null" >
+        businesshall,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="excutetime != null" >
+        excutetime,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ecode != null" >
+        ecode,
+      </if>
+      <if test="dbname != null" >
+        dbname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactFax != null" >
+        #{contactFax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        #{descn,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wsIp != null" >
+        #{wsIp,jdbcType=VARCHAR},
+      </if>
+      <if test="wsPort != null" >
+        #{wsPort,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="promoterId != null" >
+        #{promoterId,jdbcType=BIGINT},
+      </if>
+      <if test="partyId != null" >
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="contactUserName != null" >
+        #{contactUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="customermanagername != null" >
+        #{customermanagername,jdbcType=VARCHAR},
+      </if>
+      <if test="customermanagermobile != null" >
+        #{customermanagermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="businesshall != null" >
+        #{businesshall,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="excutetime != null" >
+        #{excutetime,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ecode != null" >
+        #{ecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbname != null" >
+        #{dbname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.Customer" >
+    update mt_customer
+    <set >
+      <if test="contactAddress != null" >
+        contact_address = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactFax != null" >
+        contact_fax = #{contactFax,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        descn = #{descn,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wsIp != null" >
+        ws_ip = #{wsIp,jdbcType=VARCHAR},
+      </if>
+      <if test="wsPort != null" >
+        ws_port = #{wsPort,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null" >
+        service_id = #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="promoterId != null" >
+        promoter_id = #{promoterId,jdbcType=BIGINT},
+      </if>
+      <if test="partyId != null" >
+        party_id = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="contactUserName != null" >
+        contact_user_name = #{contactUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="customermanagername != null" >
+        customermanagername = #{customermanagername,jdbcType=VARCHAR},
+      </if>
+      <if test="customermanagermobile != null" >
+        customermanagermobile = #{customermanagermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="businesshall != null" >
+        businesshall = #{businesshall,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="excutetime != null" >
+        excutetime = #{excutetime,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ecode != null" >
+        ecode = #{ecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbname != null" >
+        dbname = #{dbname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.Customer" >
+    update mt_customer
+    set contact_address = #{contactAddress,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      contact_fax = #{contactFax,jdbcType=VARCHAR},
+      contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      descn = #{descn,jdbcType=VARCHAR},
+      enable = #{enable,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=TIMESTAMP},
+      ws_ip = #{wsIp,jdbcType=VARCHAR},
+      ws_port = #{wsPort,jdbcType=VARCHAR},
+      service_id = #{serviceId,jdbcType=BIGINT},
+      promoter_id = #{promoterId,jdbcType=BIGINT},
+      party_id = #{partyId,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      contact_user_name = #{contactUserName,jdbcType=VARCHAR},
+      customermanagername = #{customermanagername,jdbcType=VARCHAR},
+      customermanagermobile = #{customermanagermobile,jdbcType=VARCHAR},
+      businesshall = #{businesshall,jdbcType=VARCHAR},
+      endtime = #{endtime,jdbcType=VARCHAR},
+      excutetime = #{excutetime,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      ecode = #{ecode,jdbcType=VARCHAR},
+      dbname = #{dbname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+     </update>
+     <select id="selectByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mt_customer
+    where id = #{companyId,jdbcType=VARCHAR}
+  </select>
+  
+ 
+</mapper>

@@ -1,0 +1,491 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('mobile_iconfont/iconfont.eot?t=1464317151');
+  /* IE9*/
+  src: url('mobile_iconfont/iconfont.eot?t=1464317151#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('mobile_iconfont/iconfont.woff?t=1464317151') format('woff'), /* chrome, firefox */ url('mobile_iconfont/iconfont.ttf?t=1464317151') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('mobile_iconfont/iconfont.svg?t=1464317151#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-zengjia:before {
+  content: "\e6ea";
+}
+.icon-zhuyi:before {
+  content: "\e6eb";
+}
+.icon-shezhi:before {
+  content: "\e644";
+}
+.icon-delete:before {
+  content: "\e654";
+}
+.icon-zhongzhuan:before {
+  content: "\e69b";
+}
+.icon-xinxi:before {
+  content: "\e604";
+}
+.icon-dianping:before {
+  content: "\e628";
+}
+.icon-shuaxin:before {
+  content: "\e631";
+}
+.icon-zhengli:before {
+  content: "\e766";
+}
+.icon-xiangzuo1:before {
+  content: "\e779";
+}
+.icon-chexiao:before {
+  content: "\e734";
+}
+.icon-gengduo:before {
+  content: "\f0013";
+}
+.icon-switch:before {
+  content: "\e667";
+}
+.icon-favfill-copy:before {
+  content: "\e600";
+}
+.icon-fav:before {
+  content: "\e622";
+}
+.icon-comments:before {
+  content: "\e602";
+}
+.icon-search:before {
+  content: "\e672";
+}
+.icon-check:before {
+  content: "\e642";
+}
+.icon-close01:before {
+  content: "\e637";
+}
+.icon-edit:before {
+  content: "\e619";
+}
+.icon-duihuan:before {
+  content: "\e65e";
+}
+.icon-tianjialeimu:before {
+  content: "\e661";
+}
+.icon-chenggong:before {
+  content: "\e629";
+}
+.icon-shibai:before {
+  content: "\e662";
+}
+.icon-dengdai:before {
+  content: "\e749";
+}
+.icon-dengdai1:before {
+  content: "\e632";
+}
+.icon-bangzhu:before {
+  content: "\e620";
+}
+.icon-tip:before {
+  content: "\e612";
+}
+.icon-jingshi:before {
+  content: "\e67b";
+}
+.icon-top:before {
+  content: "\e628";
+}
+.icon-down:before {
+  content: "\e61f";
+}
+.icon-zhaoxiang:before {
+  content: "\e7b3";
+}
+.icon-fujian:before {
+  content: "\e602";
+}
+.icon-right:before {
+  content: "\e620";
+}
+.icon-left:before {
+  content: "\e612";
+}
+.doc-title {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.doc-toolbar {
+  padding: 5px 15px;
+  background-color: #3386c0;
+  /*background-color: #ebf7ff;*/
+  line-height: 20px;
+}
+.doc-toolbar .btn-act {
+  margin-right: 5px;
+}
+.form-region {
+  width: 100%;
+  background: #fff;
+}
+.form-region * {
+  box-sizing: border-box;
+}
+.form-region .widget-region {
+  float: left;
+  padding: 10px 10px 10px 9em;
+  position: relative;
+}
+.form-region .widget-region label {
+  float: left;
+  margin-left: -8em;
+  width: 8em;
+  line-height: 30px;
+  padding: 0 .5em;
+  font-weight: 700;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.form-region .TextField input,
+.form-region .DDSelectField input,
+.form-region .NumberField input,
+.form-region .DDDateField input,
+.form-region .TextField select,
+.form-region .DDSelectField select,
+.form-region .NumberField select,
+.form-region .DDDateField select {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  line-height: 16px;
+  border: 1px solid #eee;
+}
+.form-region .DDDateRangeField {
+  padding: 0;
+}
+.form-region .DDDateRangeField .part-region {
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+.form-region .DDDateRangeField .part-region input {
+  width: 100%;
+}
+.form-region .TextareaField textarea {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  line-height: 14px;
+  height: 125px;
+  resize: none;
+  border: 1px solid #eee;
+}
+.form-region .bootstrap-select > .btn-default {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  line-height: 16px;
+  padding: 6px;
+}
+.form-table td,
+.form-table th {
+  padding: 5px .5em;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+.form-table .widget-head {
+  width: 10em;
+  min-width: 8em;
+  overflow: hidden;
+  /*background-color: #eff9fd;*/
+  background-color: #ebf7ff;
+}
+.form-table .TextField input,
+.form-table .MoneyField input,
+.form-table .DDSelectField input,
+.form-table .NumberField input,
+.form-table .DDDateField input,
+.form-table .DepartmentSelect input,
+.form-table .TextField select,
+.form-table .MoneyField select,
+.form-table .DDSelectField select,
+.form-table .NumberField select,
+.form-table .DDDateField select,
+.form-table .DepartmentSelect select {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  line-height: 16px;
+  border: 1px solid #eee;
+}
+.form-table .DDDateRangeField {
+  padding: 0;
+}
+.form-table .DDDateRangeField .part-region {
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+.form-table .DDDateRangeField .part-region input {
+  width: 100%;
+}
+.form-table .TextareaField textarea {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  line-height: 14px;
+  height: 125px;
+  resize: none;
+  border: 1px solid #eee;
+}
+.form-table .bootstrap-select > .btn-default {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  line-height: 16px;
+  padding: 6px;
+}
+.form-table .img-box {
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  margin: 10px;
+  position: relative;
+  float: left;
+  background: #f1f1f1;
+}
+.form-table .img-box img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  vertical-align: middle;
+  background: white;
+}
+.form-table .img-box .box-remove {
+  text-decoration: none;
+  color: red;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  line-height: 1rem;
+}
+.form-table .attach-box {
+  position: relative;
+  float: left;
+  margin-top: 10px;
+  padding-right: 30px;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+.form-table .attach-box .attach-icon {
+  color: #999;
+}
+.form-table .attach-box .attach-name {
+  padding: 0 .5em;
+  max-width: 11em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+}
+.form-table .attach-box .box-remove {
+  text-decoration: none;
+  color: red;
+  position: absolute;
+  top: 1px;
+  right: 7px;
+}
+.form-table .attach-box + .attach-box {
+  margin-left: 10px;
+}
+.official-doc {
+  margin: 2em auto;
+  color: #000;
+  max-width: 1024px;
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+  padding: 2em 3em;
+}
+.official-doc .heading {
+  text-align: center !important;
+}
+.official-doc-heading {
+  font-family: simsun;
+  font-size: 29pt;
+  color: #ff0000;
+  font-weight: bold;
+}
+.official-doc-issue {
+  font-family: fangsong, simsun;
+  font-size: 16pt;
+}
+.official-doc-heading-hr {
+  margin-top: 10px;
+  border-top: 3px solid red;
+}
+.official-doc-item-hr {
+  margin: 0;
+  border-top: 2px solid #000;
+}
+.official-doc-to {
+  font-family: fangsong, simsun;
+  font-size: 16pt;
+}
+.official-doc-title {
+  font-family: 华文中宋, simsun;
+  font-size: 19pt;
+  text-align: center !important;
+}
+.official-doc-content,
+.wangEditor-container .wangEditor-txt {
+  margin-bottom: 7.5em;
+  background-color: #fff;
+  color: #222;
+  font-size: 22px;
+  font-family: 仿宋_GB2312, simsun;
+  line-height: 150%;
+}
+.official-doc-content p,
+.wangEditor-container .wangEditor-txt p {
+  margin: 0;
+  padding: 0;
+  text-indent: 2em;
+}
+.official-doc-distDate {
+  text-align: right;
+}
+.official-doc-item {
+  padding: 8px 0;
+  font-family: fangsong, simsun;
+  font-size: 16pt;
+  zoom: 1;
+  line-height: 1.2;
+}
+.official-doc-item:before,
+.official-doc-item:after {
+  display: table;
+  content: " ";
+}
+.official-doc-item:after {
+  clear: both;
+}
+.official-doc-item-left {
+  float: left;
+}
+.official-doc-item-right {
+  float: left;
+}
+.wangEditor-container .wangEditor-txt {
+  margin-bottom: 0;
+}
+.department-popup {
+  width: 600px;
+  background: #ffffff;
+  height: 430px;
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  margin-left: -300px;
+  padding: 20px;
+}
+.department-popup .right-part,
+.department-popup .left-part {
+  width: 240px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+.department-popup .left-part {
+  float: left;
+}
+.department-popup .right-part {
+  float: right;
+}
+.department-popup .right-part li {
+  cursor: pointer;
+  padding: 3px 5px;
+}
+.department-popup .right-part li.active {
+  background: #d9e2ea;
+}
+.department-popup .button-part {
+  float: left;
+  width: 80px;
+  height: 300px;
+  padding: 120px 0;
+}
+.department-popup .button-part a {
+  display: block;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+}
+.department-popup .button-part a:hover {
+  background-color: #f0f0f0;
+}
+.department-popup .other-part {
+  width: 100%;
+  float: left;
+  margin-top: 20px;
+  height: 30px;
+  line-height: 30px;
+}
+.department-popup .other-part span {
+  float: left;
+  width: 60px;
+}
+.department-popup .other-part input {
+  float: left;
+  width: 420px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+}
+.department-popup .other-part a {
+  width: 60px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: #666;
+  cursor: pointer;
+  float: left;
+  margin-left: 20px;
+}
+.department-popup .footer-part {
+  text-align: center;
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+.modal-dialog {
+  width: 80%;
+  background: white;
+  position: static;
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+  top: 0;
+  left: 0;
+}

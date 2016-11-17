@@ -1,0 +1,56 @@
+@charset "utf-8";
+.search-form {
+    padding-top: 0.75rem;
+    .form-item {
+        margin: 0;
+        border-bottom: 0;
+    }
+}
+.search-button {
+    display: block;
+    background: white;
+    color: @color-blue;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    .itemborder;
+}
+
+.report-content {
+    padding: 1rem 0;
+    .select-button {
+        margin: 1rem 0;
+        border-color: @border-color;
+        border-style: solid;
+        border-width: 1px 0;
+        padding: 0.75rem 0;
+        text-align: center;
+        background: white;
+        color: @color-blue;
+    }
+    .report-table {
+        background: white;
+        width: 100%;
+        border-collapse: collapse;
+        border-color: @border-color;
+        border-style: solid;
+        border-width: 1px 0;
+        color: @color-black;
+        tr:nth-child(odd) {
+            background: @color-likeWhite;
+        }
+        caption {
+            background: white;
+            padding: 1rem;
+            color: @color-darkGrey;
+        }
+        td {
+            padding: 0.5rem 1rem;
+            border-width: 1px 0;
+        }
+        .cell-num {
+            text-align: right;
+            color: @color-black;
+        }
+    }
+}

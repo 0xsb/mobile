@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.EmailConfigMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.EmailConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="email_url" property="emailUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, company_id, email_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from email_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from email_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.EmailConfig" >
+    insert into email_config (id, user_id, company_id, 
+      email_url)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{emailUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.EmailConfig" >
+    insert into email_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="emailUrl != null" >
+        email_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="emailUrl != null" >
+        #{emailUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.EmailConfig" >
+    update email_config
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="emailUrl != null" >
+        email_url = #{emailUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR} and  company_id = #{companyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.EmailConfig" >
+    update email_config
+    set user_id = #{userId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      email_url = #{emailUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="cmcc.mobile.admin.entity.EmailConfig" >
+    select 
+    <include refid="Base_Column_List" />
+    from email_config
+    where company_id = #{companyId,jdbcType=VARCHAR} and user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+</mapper>

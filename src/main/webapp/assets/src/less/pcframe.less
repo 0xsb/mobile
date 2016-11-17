@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+@color-white: #fff;
+@color-black: #111;
+@color-grey: #999;
+@color-lightgrey: #c3c3c3;
+@color-whitegrey: #dddcdd;
+@color-darkgrey: #3b3b3b;
+@color-blue: #3386c0;
+@color-lightblue: #cce4f7;
+@color-lightcyan: #e4eaf4;
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background: url(./img/bg.jpg) no-repeat center center;
+    background-size: cover;
+    font-family: "Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+}
+.frame-container {
+    position: absolute;
+    width: 940px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    margin-left: -470px;
+    margin-top: -300px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: @color-white;
+}
+.frame-header {
+    height: 60px;
+    background-image: url(./img/logo-pcframe.png);
+    background-color: @color-blue;
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    h3 {
+        margin: 0;
+        color: @color-white;
+        padding: 0 20px;
+        line-height: 60px;
+        margin-left: 220px;
+        font-weight: normal;
+    }
+}
+.frame-body {
+    display: flex;
+    flex-flow: row wrap;
+    height: 540px;
+    .sidebar {
+        width: 100px;
+        height: 100%;
+        background-color: @color-lightcyan;
+        overflow-x: hidden;
+        overflow: hidden;
+        position: relative;
+        border-right: 1px solid @color-whitegrey;
+        border-bottom-left-radius: 3px;
+    }
+    .menu {
+        padding: 10px 0;
+        & > a {
+            display: block;
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+            color: @color-darkgrey;
+            text-decoration: none;
+            &.active {
+                background-color: @color-lightblue;
+                color: @color-blue;
+            }
+        }
+    }
+    .status {
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+        border-top: 1px solid @color-whitegrey;
+        border-bottom: 1px solid @color-whitegrey;
+        & > a {
+            display: block;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            color: @color-darkgrey;
+            text-decoration: none;
+        }
+    }
+    .content {
+        flex: 1;
+        height: 100%;
+    }
+}
+
+.iframe-box {
+    width: 100%;
+    height: 100%;
+    background: @color-white;
+    display: flex;
+    flex-flow: row wrap;
+    .ad-img {
+        flex: 1;
+        max-height: 100%;
+        max-width: e('calc(100% - 401px)');
+    }
+}
+#approval-frame {
+    width: 400px;
+    height: 100%;
+    border: 1px solid @color-whitegrey;
+    flex: 1;
+}
+#building-text {
+    flex: 1;
+    text-align: center;
+    padding: 50px;
+}

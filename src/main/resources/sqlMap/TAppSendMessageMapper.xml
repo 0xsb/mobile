@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.TAppSendMessageMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.TAppSendMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="msg_id" property="msgId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="patch_id" property="patchId" jdbcType="VARCHAR" />
+    <result column="full_patch" property="fullPatch" jdbcType="VARCHAR" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="dname" property="dname" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, msg_id, company_id, org_id, patch_id, full_patch, cname, dname, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_app_sendmessage
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_app_sendmessage
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.TAppSendMessage" >
+    insert into t_app_sendmessage (id, msg_id, company_id, 
+      org_id, patch_id, full_patch, 
+      cname, dname, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{msgId,jdbcType=BIGINT}, #{companyId,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{patchId,jdbcType=VARCHAR}, #{fullPatch,jdbcType=VARCHAR}, 
+      #{cname,jdbcType=VARCHAR}, #{dname,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.TAppSendMessage" >
+    insert into t_app_sendmessage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="msgId != null" >
+        msg_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="patchId != null" >
+        patch_id,
+      </if>
+      <if test="fullPatch != null" >
+        full_patch,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="dname != null" >
+        dname,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="patchId != null" >
+        #{patchId,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPatch != null" >
+        #{fullPatch,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="dname != null" >
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.TAppSendMessage" >
+    update t_app_sendmessage
+    <set >
+      <if test="msgId != null" >
+        msg_id = #{msgId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="patchId != null" >
+        patch_id = #{patchId,jdbcType=VARCHAR},
+      </if>
+      <if test="fullPatch != null" >
+        full_patch = #{fullPatch,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="dname != null" >
+        dname = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.TAppSendMessage" >
+    update t_app_sendmessage
+    set msg_id = #{msgId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      patch_id = #{patchId,jdbcType=VARCHAR},
+      full_patch = #{fullPatch,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      dname = #{dname,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 删除推送公告 -->
+  	<delete id="deleteByMessageId" parameterType="java.lang.Long">
+		delete from
+		t_app_sendmessage
+		where msg_id =  #{id,jdbcType=BIGINT}
+	</delete>
+</mapper>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.admin.dao.ApprovalTableConfigMapper" >
+  <resultMap id="BaseResultMap" type="cmcc.mobile.admin.entity.ApprovalTableConfig" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="default_approval_user_ids" property="defaultApprovalUserIds" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="approval_type_id" property="approvalTypeId" jdbcType="VARCHAR" />
+    <result column="last_user_id" property="lastUserId" jdbcType="VARCHAR" />
+    <result column="last_deal_way" property="lastDealWay" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, default_approval_user_ids, status, approval_type_id, last_user_id, last_deal_way, 
+    user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from approval_table_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from approval_table_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfig" >
+    insert into approval_table_config (id, date, default_approval_user_ids, 
+      status, approval_type_id, last_user_id, 
+      last_deal_way, user_id)
+    values (#{id,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{defaultApprovalUserIds,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{approvalTypeId,jdbcType=VARCHAR}, #{lastUserId,jdbcType=VARCHAR}, 
+      #{lastDealWay,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfig" >
+    insert into approval_table_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="defaultApprovalUserIds != null" >
+        default_approval_user_ids,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id,
+      </if>
+      <if test="lastUserId != null" >
+        last_user_id,
+      </if>
+      <if test="lastDealWay != null" >
+        last_deal_way,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultApprovalUserIds != null" >
+        #{defaultApprovalUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUserId != null" >
+        #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDealWay != null" >
+        #{lastDealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfig" >
+    update approval_table_config
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultApprovalUserIds != null" >
+        default_approval_user_ids = #{defaultApprovalUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalTypeId != null" >
+        approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUserId != null" >
+        last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDealWay != null" >
+        last_deal_way = #{lastDealWay,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmcc.mobile.admin.entity.ApprovalTableConfig" >
+    update approval_table_config
+    set date = #{date,jdbcType=VARCHAR},
+      default_approval_user_ids = #{defaultApprovalUserIds,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      approval_type_id = #{approvalTypeId,jdbcType=VARCHAR},
+      last_user_id = #{lastUserId,jdbcType=VARCHAR},
+      last_deal_way = #{lastDealWay,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  	<select id="selectByTypeIdAndDeafult" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from approval_table_config
+		where id = #{id,jdbcType=VARCHAR} and status = 0
+	</select>
+
+  <select id="getInfoByTypeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from approval_table_config
+		where approval_type_id = #{approvalTypeId,jdbcType=VARCHAR} 
+	</select>
+	
+	<!-- 根据集团ID和产品ID获取默认审批人 -->
+	  <select id="selectByTypeId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from approval_table_config b
+		left join approval_type c on b.approval_type_id = c.id
+		left join approval_most_type d on d.id = c.approval_most_type_id
+		where c.company_id = #{companyId} and d.wyy_id = #{wyyId}
+	</select>
+	</mapper>
